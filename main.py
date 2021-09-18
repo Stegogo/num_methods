@@ -4,7 +4,7 @@ import dearpygui.dearpygui as dpg
 comfortaa_path = os.environ['COMFORTAA_FONT_PATH']
 
 with dpg.font_registry():
-    dpg.add_font(comfortaa_path, 35, id="title_font")
+    dpg.add_font(comfortaa_path, 35)
     with dpg.font(comfortaa_path, 35, default_font=True):
         dpg.add_font_chars([0x221A])
 
