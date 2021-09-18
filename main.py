@@ -10,7 +10,6 @@ with dpg.font_registry():
 def save_callback():
     print("Clicked!")
 
-
 with dpg.window(label="Numbering Methods", id="main_window"):
     dpg.add_text("Determine the most accurate equation:")
     dpg.add_text("1)    √")
@@ -51,5 +50,5 @@ with dpg.theme(id="go_button"):
     dpg.add_theme_style(dpg.mvStyleVar_FramePadding, 20, 10, category=dpg.mvThemeCat_Core)
 
 dpg.set_item_theme("go", "go_button")
-dpg.show_style_editor()
+
 dpg.start_dearpygui()
