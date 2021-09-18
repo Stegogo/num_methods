@@ -1,6 +1,6 @@
 import os
 import dearpygui.dearpygui as dpg
-import first
+from first import first_misc
 
 comfortaa_path = os.environ['COMFORTAA_FONT_PATH']
 
@@ -31,7 +31,7 @@ with dpg.window(label="Numbering Methods", id="main_window"):
     dpg.add_same_line(spacing=10)
     dpg.add_input_text(width=100)
 
-    dpg.add_button(label="Go!", callback=first.save_callback, id="go")
+    dpg.add_button(label="Go!", callback=first_misc.save_callback, id="go")
     dpg.set_item_pos("go", [500, 80])
 
 dpg.setup_viewport()
