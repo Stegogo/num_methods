@@ -1,6 +1,8 @@
 import os
 import dearpygui.dearpygui as dpg
 from first import first_misc
+from dotenv import load_dotenv
+load_dotenv('/home/liz/!KPI/num_methods/envir.env')
 
 comfortaa_path = os.environ['COMFORTAA_FONT_PATH']
 
