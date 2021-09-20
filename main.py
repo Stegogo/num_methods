@@ -9,7 +9,7 @@ comfortaa_path = os.environ['COMFORTAA_FONT_PATH']
 with dpg.font_registry():
     dpg.add_font(comfortaa_path, 35)
     with dpg.font(comfortaa_path, 35, default_font=True):
-        dpg.add_font_chars([0x221A])
+        dpg.add_font_chars([0x221A, 0x8723])
 
 
 with dpg.window(label="Numbering Methods", id="main_window"):
@@ -17,9 +17,9 @@ with dpg.window(label="Numbering Methods", id="main_window"):
         with dpg.tab(label=" 1 ", id="t1"):
             first_gui.first1()
         with dpg.tab(label=" 2 ",id="t2"):
-            dpg.add_button(id="02")
+            first_gui.first2()
         with dpg.tab(label=" 3 ", id="t3"):
-            dpg.add_button(id="03")   
+            first_gui.first3()  
 
 
 dpg.setup_viewport()
@@ -40,5 +40,7 @@ with dpg.theme(id="go_button"):
     dpg.add_theme_style(dpg.mvStyleVar_FramePadding, 20, 10, category=dpg.mvThemeCat_Core)
 
 dpg.set_item_theme("go", "go_button")
+dpg.set_item_theme("go2", "go_button")
+dpg.set_item_theme("go3", "go_button")
 
 dpg.start_dearpygui()

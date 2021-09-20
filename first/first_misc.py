@@ -14,7 +14,6 @@ def calc(n1, x1, n2, n22, x2):
     else:
         return "Calculation error."
 
-
 def save_callback():
     global got_res
     n1 = dpg.get_value("n1")
@@ -35,3 +34,6 @@ def save_callback():
     else:
         dpg.delete_item("result")
         dpg.add_text(f"{txt}", before="go", id="result")
+
+def secondRadio():
+    print("aaaaa")
