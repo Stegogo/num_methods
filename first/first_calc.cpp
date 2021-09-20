@@ -23,7 +23,7 @@ int calc(float n1=0, float x1=0, float n2=0, float n22=1, float x2=0)
 }
 
 extern "C" {
-    int cppcalc(float n1=0, float x1=0, float n2=0, float n22=1, float x2=0)
+    int cppcalc1(float n1=0, float x1=0, float n2=0, float n22=1, float x2=0)
     {
         if (calc(n1, x1, n2, n22, x2) == 1)
 			return 1;

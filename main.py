@@ -1,7 +1,7 @@
 import os
 from typing import Text
 import dearpygui.dearpygui as dpg
-from first import first_misc
+from first import first_gui
 from dotenv import load_dotenv
 load_dotenv('./envir.env')
 comfortaa_path = os.environ['COMFORTAA_FONT_PATH']
@@ -13,33 +13,18 @@ with dpg.font_registry():
 
 
 with dpg.window(label="Numbering Methods", id="main_window"):
-    dpg.add_text("Determine the most accurate equation:")
-    dpg.add_text("1)    √")
-    dpg.add_same_line(spacing=10)
-    dpg.add_input_text(width=120, id="n1", decimal=True)
-    dpg.add_same_line(spacing=10)
-    dpg.add_text("=")
-    dpg.add_same_line(spacing=10)
-    dpg.add_input_text(width=120, id="x1", decimal=True)
-    dpg.add_text("2) ")
-    dpg.add_same_line(spacing=10)
-    dpg.add_input_text(width=100, id="n2", decimal=True)
-    dpg.add_same_line(spacing=10)
-    dpg.add_text("/")
-    dpg.add_same_line(spacing=10)
-    dpg.add_input_text(width=100, id="n22", decimal=True)
-    dpg.add_same_line(spacing=10)
-    dpg.add_text("=")
-    dpg.add_same_line(spacing=10)
-    dpg.add_input_text(width=100, id="x2", decimal=True)
-
-    dpg.add_button(label="Go!", callback=first_misc.save_callback, id="go")
-    dpg.set_item_pos("go", [500, 80])    
+    with dpg.tab_bar(id="tb1"):
+        with dpg.tab(label=" 1 ", id="t1"):
+            first_gui.first1()
+        with dpg.tab(label=" 2 ",id="t2"):
+            dpg.add_button(id="02")
+        with dpg.tab(label=" 3 ", id="t3"):
+            dpg.add_button(id="03")   
 
 
 dpg.setup_viewport()
 dpg.set_viewport_width(700)
-dpg.set_viewport_height(200)
+dpg.set_viewport_height(300)
 dpg.set_primary_window("main_window", True)
 
 with dpg.theme(default_theme=True):
@@ -49,6 +34,8 @@ with dpg.theme(default_theme=True):
     dpg.add_theme_color(dpg.mvThemeCol_Button, [255, 117, 23], category=dpg.mvThemeCat_Core)
     dpg.add_theme_color(dpg.mvThemeCol_ButtonActive, [255, 222, 31], category=dpg.mvThemeCat_Core)
     dpg.add_theme_color(dpg.mvThemeCol_ButtonHovered, [255, 164, 0], category=dpg.mvThemeCat_Core)
+    dpg.add_theme_color(dpg.mvThemeCol_TabActive, [255, 117, 23], category=dpg.mvThemeCat_Core)
+    dpg.add_theme_color(dpg.mvThemeCol_TabHovered, [255, 164, 0], category=dpg.mvThemeCat_Core)
 with dpg.theme(id="go_button"):
     dpg.add_theme_style(dpg.mvStyleVar_FramePadding, 20, 10, category=dpg.mvThemeCat_Core)
 

@@ -3,10 +3,10 @@ import ctypes
 
 got_res = False
 handle = ctypes.CDLL("./libtest.so")     
-handle.cppcalc.argtypes = [ctypes.c_float]
+handle.cppcalc1.argtypes = [ctypes.c_float]
 
 def calc(n1, x1, n2, n22, x2):
-    res = handle.cppcalc(ctypes.c_float(n1), ctypes.c_float(x1), ctypes.c_float(n2), ctypes.c_float(n22), ctypes.c_float(x2))
+    res = handle.cppcalc1(ctypes.c_float(n1), ctypes.c_float(x1), ctypes.c_float(n2), ctypes.c_float(n22), ctypes.c_float(x2))
     if res == 1:
         return f"√{int(n1)} is more accurate."
     elif res == 2:
