@@ -31,7 +31,7 @@ with dpg.window(label="Numbering Methods", id="main_window"):
     dpg.add_same_line(spacing=10)
     dpg.add_text("=")
     dpg.add_same_line(spacing=10)
-    dpg.add_input_text(width=100, id="x2", no_spaces=True, decimal=True)
+    dpg.add_input_text(width=100, id="x2", decimal=True)
 
     dpg.add_button(label="Go!", callback=first_misc.save_callback, id="go")
     dpg.set_item_pos("go", [500, 80])    
