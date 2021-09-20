@@ -1,9 +1,9 @@
 import os
+from typing import Text
 import dearpygui.dearpygui as dpg
 from first import first_misc
 from dotenv import load_dotenv
-load_dotenv('/home/liz/!KPI/num_methods/envir.env')
-
+load_dotenv('./envir.env')
 comfortaa_path = os.environ['COMFORTAA_FONT_PATH']
 
 with dpg.font_registry():
@@ -34,7 +34,7 @@ with dpg.window(label="Numbering Methods", id="main_window"):
     dpg.add_input_text(width=100, id="x2", no_spaces=True, decimal=True)
 
     dpg.add_button(label="Go!", callback=first_misc.save_callback, id="go")
-    dpg.set_item_pos("go", [500, 80])
+    dpg.set_item_pos("go", [500, 80])    
 
 
 dpg.setup_viewport()

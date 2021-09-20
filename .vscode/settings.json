@@ -1,6 +1,7 @@
 {
     "files.associations": {
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "ostream": "cpp"
     },
     "python.envFile": "/home/liz/!KPI/num_methods/envir.env"
 }
