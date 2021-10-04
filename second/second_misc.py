@@ -40,6 +40,7 @@ def save_callback():
     args = [x1, x2, x3, x4, fx1, fx2, fx3, fx4, point1, point2, point3, point4]
     if '' in args:
         txt = "Incorrect input."
+        points = [0, 0, 0, 0]
     else:
         args = [float(x) for x in args]
         txt =   calc(args[0], args[1], args[2], args[3],
@@ -51,12 +52,12 @@ def save_callback():
     
     if got_res == False:
         dpg.add_text(f"{txt}", before="go2", id="result2")
-        with dpg.window(label="Plot", width=500, height=500):
-            dpg.add_simple_plot(label="plot1", default_value=[points[0], points[1], points[2], points[3]], height=300)
+        with dpg.window(label="Plot", width=400, height=400):
+            dpg.add_simple_plot(id="plot1", default_value=[points[0], points[1], points[2], points[3]], height=300)
         got_res = True
     else:
         dpg.delete_item("result2")
         dpg.delete_item("plot1")
         dpg.add_text(f"{txt}", before="go2", id="result2")
-        with dpg.window(label="Plot", width=500, height=500):
-            dpg.add_simple_plot(label="plot1", default_value=[points[0], points[1], points[2], points[3]], height=300)
+        with dpg.window(label="Plot", width=400, height=400):
+            dpg.add_simple_plot(id="plot1", default_value=[points[0], points[1], points[2], points[3]], height=300)

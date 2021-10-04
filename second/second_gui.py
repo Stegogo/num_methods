@@ -45,5 +45,5 @@ def second1():
 
 
     dpg.add_button(label="Go!", callback=second_misc.save_callback, id="go2")
-    dpg.set_item_pos("go2", [500, 165])
+    dpg.set_item_pos("go2", [500, 180])
     
