@@ -5,10 +5,11 @@ got_res = False
 handle = ctypes.CDLL("./libtest.so")     
 handle.cppcalc1.argtypes = [ctypes.c_float]
 
-def calc(x1, x2, x3, x4, fx1, fx2, fx3, fx4):
+def calc(x1, x2, x3, x4, fx1, fx2, fx3, fx4, point1, point2, point3, point4):
     res = handle.cppcalc2(
         ctypes.c_double(x1), ctypes.c_double(x2), ctypes.c_double(x3), ctypes.c_double(x4),
-        ctypes.c_double(fx1), ctypes.c_double(fx2), ctypes.c_double(fx3), ctypes.c_double(fx4))
+        ctypes.c_double(fx1), ctypes.c_double(fx2), ctypes.c_double(fx3), ctypes.c_double(fx4),
+        ctypes.c_double(point1), ctypes.c_double(point2), ctypes.c_double(point3), ctypes.c_double(point4))
     if res == 1:
         print("1")
     elif res == 2:
@@ -28,13 +29,19 @@ def save_callback():
     fx3 = dpg.get_value("2fx_3")
     fx4 = dpg.get_value("2fx_4")
 
-    args = [x1, x2, x3, x4, fx1, fx2, fx3, fx4]
+    point1 = dpg.get_value("2dx_1")
+    point2 = dpg.get_value("2dx_2")
+    point3 = dpg.get_value("2dx_3")
+    point4 = dpg.get_value("2dx_4")
+
+    args = [x1, x2, x3, x4, fx1, fx2, fx3, fx4, point1, point2, point3, point4]
     if '' in args:
         txt = "Incorrect input."
     else:
         args = [float(x) for x in args]
         txt =   calc(args[0], args[1], args[2], args[3],
-                    args[4], args[5], args[6], args[7])
+                    args[4], args[5], args[6], args[7],
+                    args[8], args[9], args[10], args[11])
     
     if got_res == False:
         dpg.add_text(f"{txt}", before="go", id="result")
