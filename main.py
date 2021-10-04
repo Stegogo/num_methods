@@ -1,9 +1,12 @@
 import os
 from typing import Text
 import dearpygui.dearpygui as dpg
-from first import first_gui
 from dotenv import load_dotenv
 load_dotenv('./envir.env')
+
+from first import first_gui
+from second import second_gui
+
 comfortaa_path = os.environ['COMFORTAA_FONT_PATH']
 
 with dpg.font_registry():
@@ -17,7 +20,7 @@ with dpg.window(label="Numbering Methods", id="main_window"):
         with dpg.tab(label=" 1 ", id="t1"):
             first_gui.first1()
         with dpg.tab(label=" 2 ",id="t2"):
-            first_gui.first2()
+            second_gui.first2()
         with dpg.tab(label=" 3 ", id="t3"):
             first_gui.first3()  
 
