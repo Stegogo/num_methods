@@ -7,8 +7,8 @@ handle.cppcalc1.argtypes = [ctypes.c_float]
 
 def calc(x1, x2, x3, x4, fx1, fx2, fx3, fx4):
     res = handle.cppcalc2(
-        ctypes.c_float(x1), ctypes.c_float(x2), ctypes.c_float(x3), ctypes.c_float(x4),
-        ctypes.c_float(fx1), ctypes.c_float(fx2), ctypes.c_float(fx3), ctypes.c_float(fx4))
+        ctypes.c_double(x1), ctypes.c_double(x2), ctypes.c_double(x3), ctypes.c_double(x4),
+        ctypes.c_double(fx1), ctypes.c_double(fx2), ctypes.c_double(fx3), ctypes.c_double(fx4))
     if res == 1:
         print("1")
     elif res == 2:
