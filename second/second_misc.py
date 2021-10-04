@@ -41,6 +41,7 @@ def save_callback():
     
     if got_res == False:
         dpg.add_text(f"{txt}", before="go2", id="result2")
+        dpg.add_simple_plot(label="plot1", default_value=(0.3, 0.9, 0.5, 0.3), height=300)
         got_res = True
     else:
         dpg.delete_item("result2")
