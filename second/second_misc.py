@@ -6,7 +6,7 @@ handle = ctypes.CDLL("./libtest.so")
 handle.cppcalc1.argtypes = [ctypes.c_float]
 
 def calc(n1, x1, n2, n22, x2):
-    res = handle.cppcalc1(ctypes.c_float(n1), ctypes.c_float(x1), ctypes.c_float(n2), ctypes.c_float(n22), ctypes.c_float(x2))
+    res = handle.cppcalc2(ctypes.c_float(n1), ctypes.c_float(x1), ctypes.c_float(n2), ctypes.c_float(n22), ctypes.c_float(x2))
     if res == 1:
         return f"√{int(n1)} is more accurate."
     elif res == 2:
@@ -16,17 +16,23 @@ def calc(n1, x1, n2, n22, x2):
 
 def save_callback():
     global got_res
-    n1 = dpg.get_value("n1")
-    x1 = dpg.get_value("x1")
-    n2 = dpg.get_value("n2")
-    n22 = dpg.get_value("n22")
-    x2 = dpg.get_value("x2")
-    args = [n1, x1, n2, n22, x2]
+    x1 = dpg.get_value("2x_1")
+    x2 = dpg.get_value("2x_2")
+    x3 = dpg.get_value("2x_3")
+    x4 = dpg.get_value("2x_4")
+
+    fx1 = dpg.get_value("2fx_1")
+    fx2 = dpg.get_value("2fx_2")
+    fx3 = dpg.get_value("2fx_3")
+    fx4 = dpg.get_value("2fx_4")
+
+    args = [x1, x2, x3, x4, fx1, fx2, fx3, fx4]
     if '' in args:
         txt = "Incorrect input."
     else:
         args = [float(x) for x in args]
-        txt = calc(args[0], args[1], args[2], args[3], args[4])
+        txt =   calc(args[0], args[1], args[2], args[3],
+                    args[4], args[5], args[6], args[7])
     
     if got_res == False:
         dpg.add_text(f"{txt}", before="go", id="result")

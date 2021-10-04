@@ -11,6 +11,7 @@ def delete_buttons():
     dpg.delete_item("new_button2")
 """
 def second1():
+    dpg.add_text("Construct the lagrange interpolating\npolynomial:")
     dpg.add_text("  x ")
     dpg.add_same_line(spacing=10)
     dpg.add_input_text(width=40, id="2x_1", decimal=True)
@@ -34,5 +35,18 @@ def second1():
     """dpg.add_button(label="Add Buttons", callback=add_buttons, id="add_button")
     dpg.add_button(label="Delete Buttons", callback=delete_buttons, id="delete_button")"""
 
+    dpg.add_text("And calculate values at given points:")
+    dpg.add_text("  x ")
+    dpg.add_same_line(spacing=10)
+    dpg.add_input_text(width=40, id="2dx_1", decimal=True)
+    dpg.add_same_line(spacing=10)
+    dpg.add_input_text(width=40, id="2dx_2", decimal=True)
+    dpg.add_same_line(spacing=10)
+    dpg.add_input_text(width=40, id="2dx_3", decimal=True)
+    dpg.add_same_line(spacing=10)
+    dpg.add_input_text(width=40, id="2dx_4", decimal=True)
+
+
     dpg.add_button(label="Go!", callback=second_misc.save_callback, id="go2")
     dpg.set_item_pos("go2", [500, 165])
+    
