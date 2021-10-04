@@ -44,7 +44,6 @@ with dpg.theme(id="go_button"):
 
 dpg.set_item_theme("go", "go_button")
 dpg.set_item_theme("go2", "go_button")
-dpg.set_item_theme("go22", "go_button")
 dpg.set_item_theme("go3", "go_button")
 
 dpg.start_dearpygui()
