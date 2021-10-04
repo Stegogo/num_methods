@@ -5,7 +5,7 @@ got_res = False
 handle = ctypes.CDLL("./libtest.so")     
 handle.cppcalc1.argtypes = [ctypes.c_float]
 
-def calc(n1, x1, n2, n22, x2):
+def calc(x1, x2, x3, x4, fx1, fx2, fx3, fx4):
     res = handle.cppcalc2(ctypes.c_float(n1), ctypes.c_float(x1), ctypes.c_float(n2), ctypes.c_float(n22), ctypes.c_float(x2))
     if res == 1:
         return f"√{int(n1)} is more accurate."
