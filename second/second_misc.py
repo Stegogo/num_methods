@@ -6,13 +6,15 @@ handle = ctypes.CDLL("./libtest.so")
 handle.cppcalc1.argtypes = [ctypes.c_float]
 
 def calc(x1, x2, x3, x4, fx1, fx2, fx3, fx4):
-    res = handle.cppcalc2(ctypes.c_float(n1), ctypes.c_float(x1), ctypes.c_float(n2), ctypes.c_float(n22), ctypes.c_float(x2))
+    res = handle.cppcalc2(
+        ctypes.c_float(x1), ctypes.c_float(x2), ctypes.c_float(x3), ctypes.c_float(x4),
+        ctypes.c_float(fx1), ctypes.c_float(fx2), ctypes.c_float(fx3), ctypes.c_float(fx4))
     if res == 1:
-        return f"√{int(n1)} is more accurate."
+        print("1")
     elif res == 2:
-        return f"{int(n2)}/{int(n22)} is more accurate."
+        print("2")
     else:
-        return "Calculation error."
+        print("else")
 
 def save_callback():
     global got_res
