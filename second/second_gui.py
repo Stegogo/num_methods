@@ -11,7 +11,7 @@ def delete_buttons():
     dpg.delete_item("new_button2")
 """
 def second1():
-    dpg.add_text("Construct the lagrange interpolating\npolynomial:")
+    dpg.add_text("Construct the Lagrange interpolating\npolynomial:")
     dpg.add_text("  x ")
     dpg.add_same_line(spacing=10)
     dpg.add_input_text(width=70, id="2x_1", decimal=True)
