@@ -40,18 +40,22 @@ double second(double * arrX, double * arrFX, double p)
 	return l;
 }
 
-int calc2(double x1=0, double x2=0, double x3=0, double x4=0,
+double * calc2(double x1=0, double x2=0, double x3=0, double x4=0,
 		double fx1=1, double fx2=1, double fx3=1, double fx4=1,
 		double point1=0, double point2=0, double point3=0, double point4=0)
 {
 	double arrX[] = {x1, x2, x3, x4};
 	double arrFX[] = {fx1, fx2, fx3, fx4};
 	double arrP[] = {point1, point2, point3, point4};
+	double * arrFP = new double;
 	double g, l, r;
 	
-	for(int i = 0; i <= 3; i++)
-		cout<<"Y = "<< second(arrX, arrFX, arrP[i]);
-	return 0;
+	for(int i = 0; i < 3; i++)
+	{
+		arrFP[i] = second(arrX, arrFX, arrP[i]);
+		cout<<"Y = "<< arrFP[i];
+	}
+	return arrFP;
 }
 
 
@@ -65,16 +69,12 @@ extern "C" {
 		return 0;
     }
 
-	int cppcalc2(double x1=0, double x2=0, double x3=0, double x4=0,
+	double * cppcalc2(double x1=0, double x2=0, double x3=0, double x4=0,
 				double fx1=0, double fx2=0, double fx3=0, double fx4=0,
 				double point1=0, double point2=0, double point3=0, double point4=0)
     {
-        if (calc2(x1, x2, x3, x4,
+        return calc2(x1, x2, x3, x4,
 				fx1, fx2, fx3, fx4,
-				point1, point2, point3, point4) == 1)
-			return 1;
-		else
-			return 2;
-		return 0;
+				point1, point2, point3, point4);
     }
 }

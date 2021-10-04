@@ -10,12 +10,7 @@ def calc(x1, x2, x3, x4, fx1, fx2, fx3, fx4, point1, point2, point3, point4):
         ctypes.c_double(x1), ctypes.c_double(x2), ctypes.c_double(x3), ctypes.c_double(x4),
         ctypes.c_double(fx1), ctypes.c_double(fx2), ctypes.c_double(fx3), ctypes.c_double(fx4),
         ctypes.c_double(point1), ctypes.c_double(point2), ctypes.c_double(point3), ctypes.c_double(point4))
-    if res == 1:
-        print("1")
-    elif res == 2:
-        print("2")
-    else:
-        print("else")
+    print("yay")
 
 def save_callback():
     global got_res
