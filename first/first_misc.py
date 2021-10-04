@@ -34,6 +34,3 @@ def save_callback():
     else:
         dpg.delete_item("result")
         dpg.add_text(f"{txt}", before="go", id="result")
-
-def secondRadio():
-    print("aaaaa")
