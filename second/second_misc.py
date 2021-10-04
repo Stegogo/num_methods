@@ -10,7 +10,8 @@ def calc(x1, x2, x3, x4, fx1, fx2, fx3, fx4, point1, point2, point3, point4):
         ctypes.c_double(x1), ctypes.c_double(x2), ctypes.c_double(x3), ctypes.c_double(x4),
         ctypes.c_double(fx1), ctypes.c_double(fx2), ctypes.c_double(fx3), ctypes.c_double(fx4),
         ctypes.c_double(point1), ctypes.c_double(point2), ctypes.c_double(point3), ctypes.c_double(point4))
-    print("yay")
+    res.restype = ctypes.POINTER(ctypes.c_double)
+    print ([i for i in res().contents])
 
 def save_callback():
     global got_res
@@ -39,8 +40,8 @@ def save_callback():
                     args[8], args[9], args[10], args[11])
     
     if got_res == False:
-        dpg.add_text(f"{txt}", before="go", id="result")
+        dpg.add_text(f"{txt}", before="go2", id="result")
         got_res = True
     else:
         dpg.delete_item("result")
-        dpg.add_text(f"{txt}", before="go", id="result")
+        dpg.add_text(f"{txt}", before="go2", id="result")

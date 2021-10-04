@@ -47,13 +47,13 @@ double * calc2(double x1=0, double x2=0, double x3=0, double x4=0,
 	double arrX[] = {x1, x2, x3, x4};
 	double arrFX[] = {fx1, fx2, fx3, fx4};
 	double arrP[] = {point1, point2, point3, point4};
-	double * arrFP = new double;
+	double * arrFP = new double[4];
 	double g, l, r;
 	
-	for(int i = 0; i < 3; i++)
+	for(int i = 0; i <= 3; i++)
 	{
 		arrFP[i] = second(arrX, arrFX, arrP[i]);
-		cout<<"Y = "<< arrFP[i];
+		cout<<"Y = "<< arrFP[i] << endl;
 	}
 	return arrFP;
 }
