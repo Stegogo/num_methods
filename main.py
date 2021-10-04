@@ -20,7 +20,7 @@ with dpg.window(label="Numbering Methods", id="main_window"):
         with dpg.tab(label=" 1 ", id="t1"):
             first_gui.first1()
         with dpg.tab(label=" 2 ",id="t2"):
-            second_gui.first2()
+            second_gui.second1()
         with dpg.tab(label=" 3 ", id="t3"):
             first_gui.first3()  
 

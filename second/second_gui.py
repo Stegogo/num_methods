@@ -2,14 +2,28 @@ import dearpygui.dearpygui as dpg
 from second import second_misc
 
 def second1():
-    dpg.add_text("Round the doubtful digits and \nleave the correct digits of the number:")
-    dpg.add_input_text(width=100, id="a1", decimal=True)
+    dpg.add_text("  x ")
     dpg.add_same_line(spacing=10)
-    dpg.add_text("(±")
+    dpg.add_input_text(width=40, id="2x_1", decimal=True)
     dpg.add_same_line(spacing=10)
-    dpg.add_input_text(width=100, id="A1", decimal=True)
+    dpg.add_input_text(width=40, id="2x_2", decimal=True)
     dpg.add_same_line(spacing=10)
-    dpg.add_text(")")
+    dpg.add_input_text(width=40, id="2x_3", decimal=True)
+    dpg.add_same_line(spacing=10)
+    dpg.add_input_text(width=40, id="2x_4", decimal=True)
+    
+    dpg.add_text("f(x)")
+    dpg.add_same_line(spacing=10)
+    dpg.add_input_text(width=40, id="2fx_1", decimal=True)
+    dpg.add_same_line(spacing=10)
+    dpg.add_input_text(width=40, id="2fx_2", decimal=True)
+    dpg.add_same_line(spacing=10)
+    dpg.add_input_text(width=40, id="2fx_3", decimal=True)
+    dpg.add_same_line(spacing=10)
+    dpg.add_input_text(width=40, id="2fx_4", decimal=True)
+
+    
+
     dpg.add_button(label="Go!", callback=second_misc.save_callback, id="go2")
     dpg.set_item_pos("go2", [500, 165])
     dpg.add_input_text(width=100, id="b1", decimal=True)
