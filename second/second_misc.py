@@ -22,7 +22,7 @@ def get_points(x1, x2, x3, x4, fx1, fx2, fx3, fx4, point1, point2, point3, point
 
 def get_all_points(x1, x2, x3, x4, fx1, fx2, fx3, fx4):
     arr = []
-    for i in range(-100, 100):
+    for i in range(-50, 50):
         arr.append(fx1*(((i-x2)*(i-x3)*(i-x4))/((x1-x2)*(x1-x3)*(x1-x4)))+fx2*(((i-x1)*(i-x3)*(i-x4))/((x2-x1)*(x2-x3)*(x2-x4)))+fx3*(((i-x1)*(i-x2)*(i-x4))/((x3-x1)*(x3-x2)*(x3-x4)))+fx4*(((i-x1)*(i-x2)*(i-x3))/((x4-x1)*(x4-x2)*(x4-x3))))
     return arr
 
@@ -59,27 +59,28 @@ def save_callback():
     
     if got_res == False:
         dpg.add_text(f"{txt}", before="go2", id="result2")
-        with dpg.window(label="Plot", width=400, height=400):
-
+        with dpg.window(label="Plot", width=500, height=500, id="plot_window"):
             datax = []
-            for i in range(0, 50):
-                datax.append(i / 50)
+            datay = []
+            for i in range(0, 100):
+                datax.append(i / 100)
                 datay = get_all_points(float(x1), float(x2), float(x3), float(x4), float(fx1), float(fx2), float(fx3), float(fx4))
-            with dpg.window(label="Plot"):
-
-                # create plot
-                with dpg.plot(height=500, width=500):
-
-                    # REQUIRED: create x and y axes
-                    dpg.add_plot_axis(dpg.mvXAxis, label="x")
-                    dpg.add_plot_axis(dpg.mvYAxis, label="y", id="y_axis")
-
-                    # series belong to a y axis
-                    dpg.add_line_series(datax, datay, parent="y_axis")
+            with dpg.plot(height=500, width=500):
+                dpg.add_plot_axis(dpg.mvXAxis, label="x")
+                dpg.add_plot_axis(dpg.mvYAxis, label="y", id="y_axis")
+                dpg.add_line_series(datax, datay, parent="y_axis")
         got_res = True
     else:
         dpg.delete_item("result2")
-        dpg.delete_item("plot1")
+        dpg.delete_item("plot_window")
         dpg.add_text(f"{txt}", before="go2", id="result2")
-        with dpg.window(label="Plot", width=500, height=500):
-            dpg.add_simple_plot(id="plot1", default_value=[points[0], points[1], points[2], points[3]], height=300)
+        with dpg.window(label="Plot", width=500, height=500, id="plot_window"):
+            datax = []
+            datay = []
+            for i in range(0, 100):
+                datax.append(i / 100)
+                datay = get_all_points(float(x1), float(x2), float(x3), float(x4), float(fx1), float(fx2), float(fx3), float(fx4))
+            with dpg.plot(height=500, width=500):
+                dpg.add_plot_axis(dpg.mvXAxis, label="x")
+                dpg.add_plot_axis(dpg.mvYAxis, label="y", id="y_axis")
+                dpg.add_line_series(datax, datay, parent="y_axis")
