@@ -54,6 +54,23 @@ def save_callback():
         dpg.add_text(f"{txt}", before="go2", id="result2")
         with dpg.window(label="Plot", width=400, height=400):
             dpg.add_simple_plot(id="plot1", default_value=[points[0], points[1], points[2], points[3]], height=300)
+
+            """sindatax = []
+            sindatay = []
+            for i in range(0, 100):
+                sindatax.append(i / 100)
+                sindatay.append(fx1*(((i-x2)*(i-x3)*(i-x4))/((x1-x2)*(x1-x3)*(x1-x4)))+fx2*(((i-x1)*(i-x3)*(i-x4))/((x2-x1)*(x2-x3)*(x2-x4)))+fx3*(((i-x1)*(i-x2)*(i-x4))/((x3-x1)*(x3-x2)*(x3-x4)))+fx4*(((i-x1)*(i-x2)*(i-x3))/((x4-x1)*(x4-x2)*(x4-x3))))
+            with dpg.window(label="Plot"):
+
+                # create plot
+                with dpg.plot(height=500, width=500):
+
+                    # REQUIRED: create x and y axes
+                    dpg.add_plot_axis(dpg.mvXAxis, label="x")
+                    dpg.add_plot_axis(dpg.mvYAxis, label="y", id="y_axis")
+
+                    # series belong to a y axis
+                    dpg.add_line_series(sindatax, sindatay, parent="y_axis")"""
         got_res = True
     else:
         dpg.delete_item("result2")

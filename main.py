@@ -44,7 +44,7 @@ with dpg.theme(default_theme=True):
     dpg.add_theme_color(dpg.mvThemeCol_TabHovered, [255, 164, 0], category=dpg.mvThemeCat_Core)
 
     dpg.add_theme_color(dpg.mvThemeCol_PlotLines, [255, 222, 31], category=dpg.mvThemeCat_Core)
-    
+    dpg.add_theme_style(dpg.mvPlotStyleVar_Marker, dpg.mvPlotMarker_Asterisk, category=dpg.mvThemeCat_Plots)
 with dpg.theme(id="go_button"):
     dpg.add_theme_style(dpg.mvStyleVar_FramePadding, 20, 10, category=dpg.mvThemeCat_Core)
 
@@ -53,7 +53,4 @@ dpg.set_item_theme("go", "go_button")
 dpg.set_item_theme("go2", "go_button")
 dpg.set_item_theme("go3", "go_button")
 
-
-dpg.show_item_registry()
-dpg.show_style_editor()
 dpg.start_dearpygui()
