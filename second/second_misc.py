@@ -20,6 +20,14 @@ def get_points(x1, x2, x3, x4, fx1, fx2, fx3, fx4, point1, point2, point3, point
         ctypes.c_double(point1), ctypes.c_double(point2), ctypes.c_double(point3), ctypes.c_double(point4))
     return [res[0], res[1], res[2], res[3]]
 
+def get_all_points(x1, x2, x3, x4, fx1, fx2, fx3, fx4):
+    arr = []
+    print(x1, x2, x3, x4, fx1, fx2, fx3, fx4)
+    for i in range(-50, 50):
+        
+        arr.append(fx1*(((i-x2)*(i-x3)*(i-x4))/((x1-x2)*(x1-x3)*(x1-x4)))-fx2*(((i-x1)*(i-x3)*(i-x4))/((x2-x1)*(x2-x3)*(x2-x4)))-fx3*(((i-x1)*(i-x2)*(i-x4))/((x3-x1)*(x3-x2)*(x3-x4)))-fx4*(((i-x1)*(i-x2)*(i-x3))/((x4-x1)*(x4-x2)*(x4-x3))))
+    return arr
+
 def save_callback():
     global got_res
     x1 = dpg.get_value("2x_1")
@@ -49,17 +57,18 @@ def save_callback():
         points = get_points(args[0], args[1], args[2], args[3],
                     args[4], args[5], args[6], args[7],
                     args[8], args[9], args[10], args[11])
+
     
     if got_res == False:
         dpg.add_text(f"{txt}", before="go2", id="result2")
         with dpg.window(label="Plot", width=400, height=400):
-            dpg.add_simple_plot(id="plot1", default_value=[points[0], points[1], points[2], points[3]], height=300)
+            #dpg.add_simple_plot(id="plot1", default_value=[points[0], points[1], points[2], points[3]], height=300)
 
-            """sindatax = []
+            sindatax = []
             sindatay = []
             for i in range(0, 100):
                 sindatax.append(i / 100)
-                sindatay.append(fx1*(((i-x2)*(i-x3)*(i-x4))/((x1-x2)*(x1-x3)*(x1-x4)))+fx2*(((i-x1)*(i-x3)*(i-x4))/((x2-x1)*(x2-x3)*(x2-x4)))+fx3*(((i-x1)*(i-x2)*(i-x4))/((x3-x1)*(x3-x2)*(x3-x4)))+fx4*(((i-x1)*(i-x2)*(i-x3))/((x4-x1)*(x4-x2)*(x4-x3))))
+                sindatay.append(get_all_points(float(x1), float(x2), float(x3), float(x4), float(fx1), float(fx2), float(fx3), float(fx4)))
             with dpg.window(label="Plot"):
 
                 # create plot
@@ -70,7 +79,7 @@ def save_callback():
                     dpg.add_plot_axis(dpg.mvYAxis, label="y", id="y_axis")
 
                     # series belong to a y axis
-                    dpg.add_line_series(sindatax, sindatay, parent="y_axis")"""
+                    dpg.add_line_series(sindatax, sindatay, parent="y_axis")
         got_res = True
     else:
         dpg.delete_item("result2")
