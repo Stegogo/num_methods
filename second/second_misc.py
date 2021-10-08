@@ -39,7 +39,7 @@ def secondcpp(x1, x2, x3, x4, fx1, fx2, fx3, fx4, p):
 
 def save_callback():
     global got_res
-    x1 = dpg.get_value("2x_1") 
+    x1 = dpg.get_value("2x_1")
     x2 = dpg.get_value("2x_2")
     x3 = dpg.get_value("2x_3")
     x4 = dpg.get_value("2x_4")
@@ -73,7 +73,7 @@ def save_callback():
         with dpg.window(label="Plot", width=600, height=600, id="plot_window"):
             datax = []
             datay = []
-            for i in range(min(int(x1),int(x2), int(x3), int(x4)), max(int(x1),int(x2), int(x3), int(x4))):
+            for i in range(min(int(x1),int(x2), int(x3), int(x4)), max(int(x1),int(x2), int(x3), int(x4))+1):
                 datax.append(i)
                 datay.append(secondcpp(float(x1), float(x2), float(x3), float(x4), float(fx1), float(fx2), float(fx3), float(fx4), i))
             with dpg.plot(height=500, width=500):
@@ -88,7 +88,7 @@ def save_callback():
         with dpg.window(label="Plot", width=600, height=600, id="plot_window"):
             datax = []
             datay = []
-            for i in range(min(int(x1),int(x2), int(x3), int(x4)), max(int(x1),int(x2), int(x3), int(x4))):
+            for i in range(min(int(x1),int(x2), int(x3), int(x4)), max(int(x1),int(x2), int(x3), int(x4))+1):
                 datax.append(i)
                 datay.append(secondcpp(float(x1), float(x2), float(x3), float(x4), float(fx1), float(fx2), float(fx3), float(fx4), i))
             with dpg.plot(height=500, width=500):

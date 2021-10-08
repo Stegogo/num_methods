@@ -57,7 +57,6 @@ double second_single_point(double x1=0, double x2=0, double x3=0, double x4=0,
 		}
 		l=l+arrFX[i]*g;
 	}
-	cout << l << endl;
 	return l;
 }
 
@@ -80,10 +79,6 @@ double calc22(double x1=0, double x2=0, double x3=0, double x4=0,
 		double fx1=1, double fx2=1, double fx3=1, double fx4=1,
 		double p=0)
 {
-	//double arrX[] = {x1, x2, x3, x4};
-	//double arrFX[] = {fx1, fx2, fx3, fx4};
-	//double arrP[] = {point1, point2, point3, point4};
-	//double * arrFP = new double[4];
 	double g, l, r;
 	
 	double fp = second_single_point(x1, x2, x3, x4, fx1, fx2, fx3, fx4, p);
