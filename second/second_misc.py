@@ -32,15 +32,6 @@ def get_all_points(x1, x2, x3, x4, fx1, fx2, fx3, fx4):
     return arr
 
 def secondcpp(x1, x2, x3, x4, fx1, fx2, fx3, fx4, p):
-    """arrX = [x1, x2, x3, x4]
-    arrX4 = ctypes.c_float * 4
-    param_arrX = arrX4(*arrX)
-
-    arrFX = [fx1, fx2, fx3, fx4]
-    arrFX4 = ctypes.c_float * 4
-    param_arrFX = arrFX4(*arrFX)"""
-    print("secondcpp=", [x1, x2, x3, x4, fx1, fx2, fx3, fx4, p])
-    print("x1 =", x1, "x1_ctypes =", ctypes.c_double(x1))
     res = handle.second2(ctypes.c_double(x1), ctypes.c_double(x2), ctypes.c_double(x3), ctypes.c_double(x4),
     ctypes.c_double(fx1), ctypes.c_double(fx2), ctypes.c_double(fx3), ctypes.c_double(fx4),
     ctypes.c_double(p))
@@ -79,13 +70,12 @@ def save_callback():
     
     if got_res == False:
         dpg.add_text(f"{txt}", before="go2", id="result2")
-        with dpg.window(label="Plot", width=500, height=500, id="plot_window"):
+        with dpg.window(label="Plot", width=600, height=600, id="plot_window"):
             datax = []
             datay = []
             for i in range(min(int(x1),int(x2), int(x3), int(x4)), max(int(x1),int(x2), int(x3), int(x4))):
                 datax.append(i)
-                datay.append(secondcpp(float(x1), float(x2), float(x3), float(x4), float(fx1), float(fx2), float(fx3), float(fx4), i))    
-            print("end values=", datay)
+                datay.append(secondcpp(float(x1), float(x2), float(x3), float(x4), float(fx1), float(fx2), float(fx3), float(fx4), i))
             with dpg.plot(height=500, width=500):
                 dpg.add_plot_axis(dpg.mvXAxis, label="x")
                 dpg.add_plot_axis(dpg.mvYAxis, label="y", id="y_axis")
@@ -95,13 +85,12 @@ def save_callback():
         dpg.delete_item("result2")
         dpg.delete_item("plot_window")
         dpg.add_text(f"{txt}", before="go2", id="result2")
-        with dpg.window(label="Plot", width=500, height=500, id="plot_window"):
+        with dpg.window(label="Plot", width=600, height=600, id="plot_window"):
             datax = []
             datay = []
-            for i in range(-5, 10):
-                datax.append(i / 10)
+            for i in range(min(int(x1),int(x2), int(x3), int(x4)), max(int(x1),int(x2), int(x3), int(x4))):
+                datax.append(i)
                 datay.append(secondcpp(float(x1), float(x2), float(x3), float(x4), float(fx1), float(fx2), float(fx3), float(fx4), i))
-                #datay = get_all_points(float(x1), float(x2), float(x3), float(x4), float(fx1), float(fx2), float(fx3), float(fx4))
             with dpg.plot(height=500, width=500):
                 dpg.add_plot_axis(dpg.mvXAxis, label="x")
                 dpg.add_plot_axis(dpg.mvYAxis, label="y", id="y_axis")
