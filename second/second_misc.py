@@ -31,8 +31,14 @@ def get_all_points(x1, x2, x3, x4, fx1, fx2, fx3, fx4):
 
 def secondcpp(x1, x2, x3, x4, fx1, fx2, fx3, fx4, p):
     arrX = [x1, x2, x3, x4]
+    arrX4 = ctypes.c_float * 4
+    param_arrX = arrX4(*arrX)
+
     arrFX = [fx1, fx2, fx3, fx4]
-    res = handle.second2(arrX, arrFX, p)
+    arrFX4 = ctypes.c_float * 4
+    param_arrFX = arrFX4(*arrFX)
+
+    res = handle.second2(param_arrX, param_arrFX, p)
     return res
 
 def save_callback():
@@ -72,7 +78,8 @@ def save_callback():
             datax = []
             datay = []
             for i in range(0, 20):
-                datax.append(i / 20)
+                datax.append(i)
+                #print(secondcpp(float(x1), float(x2), float(x3), float(x4), float(fx1), float(fx2), float(fx3), float(fx4), i))
                 datay = get_all_points(float(x1), float(x2), float(x3), float(x4), float(fx1), float(fx2), float(fx3), float(fx4))
             with dpg.plot(height=500, width=500):
                 dpg.add_plot_axis(dpg.mvXAxis, label="x")
@@ -88,8 +95,8 @@ def save_callback():
             datay = []
             for i in range(0, 20):
                 datax.append(i / 20)
-                datay = secondcpp(float(x1), float(x2), float(x3), float(x4), float(fx1), float(fx2), float(fx3), float(fx4), i)
-                #datay = get_all_points(float(x1), float(x2), float(x3), float(x4), float(fx1), float(fx2), float(fx3), float(fx4))
+                #datay = secondcpp(float(x1), float(x2), float(x3), float(x4), float(fx1), float(fx2), float(fx3), float(fx4), i)
+                datay = get_all_points(float(x1), float(x2), float(x3), float(x4), float(fx1), float(fx2), float(fx3), float(fx4))
             with dpg.plot(height=500, width=500):
                 dpg.add_plot_axis(dpg.mvXAxis, label="x")
                 dpg.add_plot_axis(dpg.mvYAxis, label="y", id="y_axis")
