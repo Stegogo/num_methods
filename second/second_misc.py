@@ -39,7 +39,7 @@ def secondcpp(x1, x2, x3, x4, fx1, fx2, fx3, fx4, p):
 
 def save_callback():
     global got_res
-    x1 = dpg.get_value("2x_1")
+    x1 = dpg.get_value("2x_1") 
     x2 = dpg.get_value("2x_2")
     x3 = dpg.get_value("2x_3")
     x4 = dpg.get_value("2x_4")

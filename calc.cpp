@@ -119,10 +119,6 @@ extern "C" {
 				double fx1=0, double fx2=0, double fx3=0, double fx4=0,
 				double p=0)
 	{
-		cout << x1 << endl;
-		cout <<"ssp=" << second_single_point(0.0, 2.0, 3.0, 5.0,
-				1.0, 3.0, 2.0, 5.0,
-				4.0);
 		return second_single_point(x1, x2, x3, x4,
 				fx1, fx2, fx3, fx4,
 				p);
