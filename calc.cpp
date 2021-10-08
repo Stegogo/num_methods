@@ -40,15 +40,26 @@ double second(double * arrX, double * arrFX, double p)
 	return l;
 }
 
-double second_single_point(double arrX=0, double arrFX=1, double p=4)
+double second_single_point(double x1=0, double x2=0, double x3=0, double x4=0,
+		double fx1=1, double fx2=1, double fx3=1, double fx4=1, double p=0)
 {
+	double arrX[] = {x1, x2, x3, x4};
+	double arrFX[] = {fx1, fx2, fx3, fx4};
 	double l=0;
 	double g = 1;
-	g = g*((p-arrX)/(arrX-arrX));
-	l=l+arrFX*g;
+	for(int i=0; i<=3; i++)
+	{
+		g=1;
+		for(int j=0; j<=3; j++)
+		{
+			if(i != j)
+			g = g*((p-arrX[j])/(arrX[i]-arrX[j]));
+		}
+		l=l+arrFX[i]*g;
+	}
 	cout << l << endl;
 	return l;
-}*/
+}
 
 double * calc2(double x1=0, double x2=0, double x3=0, double x4=0,
 		double fx1=1, double fx2=1, double fx3=1, double fx4=1,
@@ -65,6 +76,19 @@ double * calc2(double x1=0, double x2=0, double x3=0, double x4=0,
 	return arrFP;
 }
 
+double calc22(double x1=0, double x2=0, double x3=0, double x4=0,
+		double fx1=1, double fx2=1, double fx3=1, double fx4=1,
+		double p=0)
+{
+	//double arrX[] = {x1, x2, x3, x4};
+	//double arrFX[] = {fx1, fx2, fx3, fx4};
+	//double arrP[] = {point1, point2, point3, point4};
+	//double * arrFP = new double[4];
+	double g, l, r;
+	
+	double fp = second_single_point(x1, x2, x3, x4, fx1, fx2, fx3, fx4, p);
+	return fp;
+}
 
 extern "C" {
     int cppcalc1(float n1=0, float x1=0, float n2=0, float n22=1, float x2=0)
@@ -75,8 +99,7 @@ extern "C" {
 			return 2;
 		return 0;
     }
-
-	double * cppcalc2(double x1=0, double x2=0, double x3=0, double x4=0,
+	double * cppcalc21(double x1=0, double x2=0, double x3=0, double x4=0,
 				double fx1=0, double fx2=0, double fx3=0, double fx4=0,
 				double point1=0, double point2=0, double point3=0, double point4=0)
     {
@@ -84,8 +107,24 @@ extern "C" {
 				fx1, fx2, fx3, fx4,
 				point1, point2, point3, point4);
     }
-	double second2(double * arrX, double * arrFX, double p)
+	double cppcalc2(double x1=0, double x2=0, double x3=0, double x4=0,
+				double fx1=0, double fx2=0, double fx3=0, double fx4=0,
+				double point1=0, double point2=0, double point3=0, double point4=0)
+    {
+        return calc22(x1, x2, x3, x4,
+				fx1, fx2, fx3, fx4,
+				point1);
+    }
+	double second2(double x1=0, double x2=0, double x3=0, double x4=0,
+				double fx1=0, double fx2=0, double fx3=0, double fx4=0,
+				double p=0)
 	{
-		return second(arrX, arrFX, p);
+		cout << x1 << endl;
+		cout <<"ssp=" << second_single_point(0.0, 2.0, 3.0, 5.0,
+				1.0, 3.0, 2.0, 5.0,
+				4.0);
+		return second_single_point(x1, x2, x3, x4,
+				fx1, fx2, fx3, fx4,
+				p);
 	}
 }

@@ -3,18 +3,20 @@ import ctypes
 
 got_res = False
 handle = ctypes.CDLL("./libtest.so")     
-handle.cppcalc2.argtypes = [ctypes.c_double]
-handle.cppcalc2.restype = ctypes.POINTER(ctypes.c_double)
+handle.cppcalc21.argtypes = [ctypes.c_double]
+handle.second2.argtypes = [ctypes.c_double]
+handle.second2.restype = ctypes.c_double
+handle.cppcalc21.restype = ctypes.POINTER(ctypes.c_double)
 
 def calc(x1, x2, x3, x4, fx1, fx2, fx3, fx4, point1, point2, point3, point4):
-    res = handle.cppcalc2(
+    res = handle.cppcalc21(
         ctypes.c_double(x1), ctypes.c_double(x2), ctypes.c_double(x3), ctypes.c_double(x4),
         ctypes.c_double(fx1), ctypes.c_double(fx2), ctypes.c_double(fx3), ctypes.c_double(fx4),
         ctypes.c_double(point1), ctypes.c_double(point2), ctypes.c_double(point3), ctypes.c_double(point4))
     return f"""f({point1}) = {round(res[0], 3)}\nf({point2}) = {round(res[1], 3)}\nf({point3}) = {round(res[2], 3)}\nf({point4}) = {round(res[3], 3)}\n"""
 
 def get_points(x1, x2, x3, x4, fx1, fx2, fx3, fx4, point1, point2, point3, point4):
-    res = handle.cppcalc2(
+    res = handle.cppcalc21(
         ctypes.c_double(x1), ctypes.c_double(x2), ctypes.c_double(x3), ctypes.c_double(x4),
         ctypes.c_double(fx1), ctypes.c_double(fx2), ctypes.c_double(fx3), ctypes.c_double(fx4),
         ctypes.c_double(point1), ctypes.c_double(point2), ctypes.c_double(point3), ctypes.c_double(point4))
@@ -30,15 +32,18 @@ def get_all_points(x1, x2, x3, x4, fx1, fx2, fx3, fx4):
     return arr
 
 def secondcpp(x1, x2, x3, x4, fx1, fx2, fx3, fx4, p):
-    arrX = [x1, x2, x3, x4]
+    """arrX = [x1, x2, x3, x4]
     arrX4 = ctypes.c_float * 4
     param_arrX = arrX4(*arrX)
 
     arrFX = [fx1, fx2, fx3, fx4]
     arrFX4 = ctypes.c_float * 4
-    param_arrFX = arrFX4(*arrFX)
-
-    res = handle.second2(param_arrX, param_arrFX, p)
+    param_arrFX = arrFX4(*arrFX)"""
+    print("secondcpp=", [x1, x2, x3, x4, fx1, fx2, fx3, fx4, p])
+    print("x1 =", x1, "x1_ctypes =", ctypes.c_double(x1))
+    res = handle.second2(ctypes.c_double(x1), ctypes.c_double(x2), ctypes.c_double(x3), ctypes.c_double(x4),
+    ctypes.c_double(fx1), ctypes.c_double(fx2), ctypes.c_double(fx3), ctypes.c_double(fx4),
+    ctypes.c_double(p))
     return res
 
 def save_callback():
@@ -77,10 +82,13 @@ def save_callback():
         with dpg.window(label="Plot", width=500, height=500, id="plot_window"):
             datax = []
             datay = []
-            for i in range(0, 20):
+            for i in range(0, 8):
                 datax.append(i)
-                #print(secondcpp(float(x1), float(x2), float(x3), float(x4), float(fx1), float(fx2), float(fx3), float(fx4), i))
-                datay = get_all_points(float(x1), float(x2), float(x3), float(x4), float(fx1), float(fx2), float(fx3), float(fx4))
+                print ("data append", secondcpp(float(x1), float(x2), float(x3), float(x4), float(fx1), float(fx2), float(fx3), float(fx4), i))
+                datay.append(secondcpp(float(x1), float(x2), float(x3), float(x4), float(fx1), float(fx2), float(fx3), float(fx4), i))
+                #datay.append(secondcpp(float(x1), float(x2), float(x3), float(x4), float(fx1), float(fx2), float(fx3), float(fx4), i))
+                #datay = get_all_points(float(x1), float(x2), float(x3), float(x4), float(fx1), float(fx2), float(fx3), float(fx4))
+            print("end values=", datay)
             with dpg.plot(height=500, width=500):
                 dpg.add_plot_axis(dpg.mvXAxis, label="x")
                 dpg.add_plot_axis(dpg.mvYAxis, label="y", id="y_axis")
@@ -93,10 +101,10 @@ def save_callback():
         with dpg.window(label="Plot", width=500, height=500, id="plot_window"):
             datax = []
             datay = []
-            for i in range(0, 20):
-                datax.append(i / 20)
-                #datay = secondcpp(float(x1), float(x2), float(x3), float(x4), float(fx1), float(fx2), float(fx3), float(fx4), i)
-                datay = get_all_points(float(x1), float(x2), float(x3), float(x4), float(fx1), float(fx2), float(fx3), float(fx4))
+            for i in range(-5, 10):
+                datax.append(i / 10)
+                datay.append(secondcpp(float(x1), float(x2), float(x3), float(x4), float(fx1), float(fx2), float(fx3), float(fx4), i))
+                #datay = get_all_points(float(x1), float(x2), float(x3), float(x4), float(fx1), float(fx2), float(fx3), float(fx4))
             with dpg.plot(height=500, width=500):
                 dpg.add_plot_axis(dpg.mvXAxis, label="x")
                 dpg.add_plot_axis(dpg.mvYAxis, label="y", id="y_axis")
