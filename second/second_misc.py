@@ -82,12 +82,9 @@ def save_callback():
         with dpg.window(label="Plot", width=500, height=500, id="plot_window"):
             datax = []
             datay = []
-            for i in range(0, 8):
+            for i in range(min(int(x1),int(x2), int(x3), int(x4)), max(int(x1),int(x2), int(x3), int(x4))):
                 datax.append(i)
-                print ("data append", secondcpp(float(x1), float(x2), float(x3), float(x4), float(fx1), float(fx2), float(fx3), float(fx4), i))
-                datay.append(secondcpp(float(x1), float(x2), float(x3), float(x4), float(fx1), float(fx2), float(fx3), float(fx4), i))
-                #datay.append(secondcpp(float(x1), float(x2), float(x3), float(x4), float(fx1), float(fx2), float(fx3), float(fx4), i))
-                #datay = get_all_points(float(x1), float(x2), float(x3), float(x4), float(fx1), float(fx2), float(fx3), float(fx4))
+                datay.append(secondcpp(float(x1), float(x2), float(x3), float(x4), float(fx1), float(fx2), float(fx3), float(fx4), i))    
             print("end values=", datay)
             with dpg.plot(height=500, width=500):
                 dpg.add_plot_axis(dpg.mvXAxis, label="x")
