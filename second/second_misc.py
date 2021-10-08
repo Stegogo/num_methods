@@ -1,5 +1,6 @@
 import dearpygui.dearpygui as dpg
 import ctypes
+import numpy as np
 
 got_res = False
 handle = ctypes.CDLL("./libtest.so")     
@@ -73,7 +74,7 @@ def save_callback():
         with dpg.window(label="Plot", width=600, height=600, id="plot_window"):
             datax = []
             datay = []
-            for i in range(min(int(x1),int(x2), int(x3), int(x4)), max(int(x1),int(x2), int(x3), int(x4))+1):
+            for i in np.arange(min(int(x1),int(x2), int(x3), int(x4)), max(int(x1),int(x2), int(x3), int(x4))+1, 0.1):
                 datax.append(i)
                 datay.append(secondcpp(float(x1), float(x2), float(x3), float(x4), float(fx1), float(fx2), float(fx3), float(fx4), i))
             with dpg.plot(height=500, width=500):
@@ -88,7 +89,7 @@ def save_callback():
         with dpg.window(label="Plot", width=600, height=600, id="plot_window"):
             datax = []
             datay = []
-            for i in range(min(int(x1),int(x2), int(x3), int(x4)), max(int(x1),int(x2), int(x3), int(x4))+1):
+            for i in np.arange(min(int(x1),int(x2), int(x3), int(x4)), max(int(x1),int(x2), int(x3), int(x4))+1, 0.1):
                 datax.append(i)
                 datay.append(secondcpp(float(x1), float(x2), float(x3), float(x4), float(fx1), float(fx2), float(fx3), float(fx4), i))
             with dpg.plot(height=500, width=500):
