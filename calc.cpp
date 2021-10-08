@@ -40,6 +40,16 @@ double second(double * arrX, double * arrFX, double p)
 	return l;
 }
 
+double second_single_point(double arrX=0, double arrFX=1, double p=4)
+{
+	double l=0;
+	double g = 1;
+	g = g*((p-arrX)/(arrX-arrX));
+	l=l+arrFX*g;
+	cout << l << endl;
+	return l;
+}*/
+
 double * calc2(double x1=0, double x2=0, double x3=0, double x4=0,
 		double fx1=1, double fx2=1, double fx3=1, double fx4=1,
 		double point1=0, double point2=0, double point3=0, double point4=0)

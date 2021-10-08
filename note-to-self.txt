@@ -1,0 +1,12 @@
+root
+├── first
+│   ├── first_gui.py	// GUI for 1st task
+│   ├── first_misc.py	// CPP function calls for 1st task
+│   └── first_calc.py	// CPP functions for 1st task
+├── second
+│   ├── second_gui.py	//same but for 2nd task and so on
+│   ├── second_misc.py
+│   └── second_calc.py
+├── libtest.so
+├── envir.py
+└── main.py
