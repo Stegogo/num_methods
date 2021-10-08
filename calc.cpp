@@ -74,4 +74,8 @@ extern "C" {
 				fx1, fx2, fx3, fx4,
 				point1, point2, point3, point4);
     }
+	double second2(double * arrX, double * arrFX, double p)
+	{
+		return second(arrX, arrFX, p);
+	}
 }
