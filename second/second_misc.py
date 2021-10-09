@@ -57,21 +57,21 @@ def save_callback():
 
     args = [x1, x2, x3, x4, fx1, fx2, fx3, fx4, point1, point2, point3, point4]
     if '' in args:
-        txt = "Incorrect input."
-        points = [0, 0, 0, 0]
+        for index, item in enumerate(args):
+            if (item == ''):
+                args[index] = 0
+        txt = "Insufficient input.\nAll empty values were replaced with 0"
     else:
         args = [float(x) for x in args]
         txt =   calc(args[0], args[1], args[2], args[3],
                     args[4], args[5], args[6], args[7],
                     args[8], args[9], args[10], args[11])
-        points = get_points(args[0], args[1], args[2], args[3],
-                    args[4], args[5], args[6], args[7],
-                    args[8], args[9], args[10], args[11])
-
     
+    x1, x2, x3, x4, fx1, fx2, fx3, fx4, point1, point2, point3, point4 = args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8], args[9], args[10], args[11]
+
     if got_res == False:
         dpg.add_text(f"{txt}", before="go2", id="result2")
-        with dpg.window(label="Plot", width=600, height=600, id="plot_window"):
+        with dpg.window(label="Plot", width=550, height=600, id="plot_window"):
             datax = []
             datay = []
             for i in np.arange(min(int(x1),int(x2), int(x3), int(x4)), max(int(x1),int(x2), int(x3), int(x4))+1, 0.1):
@@ -86,7 +86,7 @@ def save_callback():
         dpg.delete_item("result2")
         dpg.delete_item("plot_window")
         dpg.add_text(f"{txt}", before="go2", id="result2")
-        with dpg.window(label="Plot", width=600, height=600, id="plot_window"):
+        with dpg.window(label="Plot", width=550, height=600, id="plot_window"):
             datax = []
             datay = []
             for i in np.arange(min(int(x1),int(x2), int(x3), int(x4)), max(int(x1),int(x2), int(x3), int(x4))+1, 0.1):

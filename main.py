@@ -14,7 +14,6 @@ with dpg.font_registry():
     with dpg.font(comfortaa_path, 35, default_font=True):
         dpg.add_font_chars([0x221A, 0x8723, 0x03B4])
 
-
 with dpg.window(label="Numbering Methods", id="main_window"):
     with dpg.tab_bar(id="tb1"):
         with dpg.tab(label=" 1 ", id="t1"):
