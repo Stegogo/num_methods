@@ -1,5 +1,4 @@
 import os
-from typing import Text
 import dearpygui.dearpygui as dpg
 from dotenv import load_dotenv
 load_dotenv('./envir.env')
