@@ -26,7 +26,7 @@ with dpg.window(label="Numbering Methods", id="main_window"):
 
 dpg.setup_viewport()
 dpg.set_viewport_width(700)
-dpg.set_viewport_height(350)
+dpg.set_viewport_height(500)
 dpg.set_primary_window("main_window", True)
 
 with dpg.theme(default_theme=True):
@@ -41,9 +41,12 @@ with dpg.theme(default_theme=True):
     dpg.add_theme_color(dpg.mvThemeCol_TitleBgCollapsed, [255, 117, 23], category=dpg.mvThemeCat_Core)
     dpg.add_theme_color(dpg.mvThemeCol_TabActive, [255, 117, 23], category=dpg.mvThemeCat_Core)
     dpg.add_theme_color(dpg.mvThemeCol_TabHovered, [255, 164, 0], category=dpg.mvThemeCat_Core)
+    dpg.add_theme_color(dpg.mvThemeCol_CheckMark, [255, 175, 109], category=dpg.mvThemeCat_Core)
+    dpg.add_theme_color(dpg.mvThemeCol_FrameBgHovered, [255, 156, 103], category=dpg.mvThemeCat_Core)
+    dpg.add_theme_color(dpg.mvThemeCol_FrameBgActive, [255, 255, 153], category=dpg.mvThemeCat_Core)
 
     dpg.add_theme_color(dpg.mvThemeCol_PlotLines, [255, 222, 31], category=dpg.mvThemeCat_Core)
-    dpg.add_theme_color(dpg.mvPlotCol_Line, [255, 222, 31], category=dpg.mvThemeCat_Plots)
+    dpg.add_theme_color(dpg.mvPlotCol_Line, [255, 225, 31], category=dpg.mvThemeCat_Plots)
     dpg.add_theme_style(dpg.mvPlotStyleVar_Marker, dpg.mvPlotMarker_Asterisk, category=dpg.mvThemeCat_Plots)
 with dpg.theme(id="go_button"):
     dpg.add_theme_style(dpg.mvStyleVar_FramePadding, 20, 10, category=dpg.mvThemeCat_Core)
@@ -52,8 +55,5 @@ with dpg.theme(id="go_button"):
 dpg.set_item_theme("go", "go_button")
 dpg.set_item_theme("go2", "go_button")
 dpg.set_item_theme("go3", "go_button")
-
-dpg.show_imgui_demo()
-dpg.show_documentation()
 
 dpg.start_dearpygui()
