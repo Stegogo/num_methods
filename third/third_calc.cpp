@@ -4,17 +4,47 @@
 using namespace std;
 const int n=12;
 
-double get_Y(double * y1, double * y2, double * y3, double * y4, double * y5, double t, double h)
+double get_Y(double * y1, double * y2, double * y3, double * y4, double * X, double t, double h, double xX, int xXind)
 {
-    double G = (y1[0]+y2[0]*(2*t-1)/2+y3[0]*(3*t*t-6*t+2)/6+y4[0]*(4*t*t*t-18*t*t+
-    22*t-6)/24+y5[0]*(5*t*t*t*t-40*t*t*t+105*t*t-100*t+24)/120)/h;  //! NEED FORMULA FOR THE LOWER PART OF THE TABLE
+    double G = 0;
+    if(xX < X[5])
+    {
+        cout << "using first" << endl;
+        if (xXind-2 < 0)
+            G = (y1[0]+y2[0]*(2*t-1)/2+y3[0]*(3*t*t-6*t+2)/6+y4[0]*(4*t*t*t-18*t*t+22*t-6)/24)/h;
+        else
+            G = (y1[xXind-1]+y2[xXind-2]*(2*t-1)/2+y3[xXind-3]*(3*t*t-6*t+2)/6+y4[xXind-4]*(4*t*t*t-18*t*t+22*t-6)/24)/h;
+    }
+    else
+    {
+        if (xXind-2 < 0)
+            G = (y1[0]+y2[0]*(2*t+1)/2+y3[0]*(3*t*t+6*t+2)/6+y4[0]*(4*t*t*t+18*t*t+22*t+6)/24)/h;
+        else
+            G = (y1[xXind-1]+y2[xXind-2]*(2*t+1)/2+y3[xXind-3]*(3*t*t+6*t+2)/6+y4[xXind-4]*(4*t*t*t+18*t*t+22*t+6)/24)/h;
+    }
+    
     cout<<"Y' = "<< G << endl;
     return G;
 }
 
-double get_YY(double * y1, double * y2, double * y3, double * y4, double * y5, double t, double h)
+double get_YY(double * y1, double * y2, double * y3, double * y4, double * X, double t, double h, double xX, int xXind)
 {
-    double L = (y2[0]+y3[0]*(t-1)+y4[0]*(12*t*t-36*t+22)/24+y5[0]*(20*t*t*t-120*t*t+ 210*t-100)/120)/(h*h);
+     double L = 0;
+    if(xX < X[5])
+    {
+        cout << "using first" << endl;
+        if (xXind-2 < 0)
+            L = (y2[0]+y3[0]*(t-1)+y4[0]*(12*t*t-36*t+22)/24)/(h*h);
+        else
+            L = (y2[xXind-2]+y3[xXind-3]*(t-1)+y4[xXind-4]*(12*t*t-36*t+22)/24)/(h*h);
+    }
+    else
+    {
+        if (xXind-2 < 0)
+            L = (y2[0]+y3[0]*(t+1)+y4[0]*(12*t*t+36*t+22)/24)/(h*h);
+        else
+            L = (y2[xXind-2]+y3[xXind-3]*(t+1)+y4[xXind-4]*(12*t*t+36*t+22)/24)/(h*h);
+    }
     cout<<"Y\" = " << L << endl;
     return L;
 }
@@ -34,15 +64,17 @@ double * calc3(double x1, double x2, double x3, double x4, double x5, double x6,
     int k=0;
 
     double xX = X[0];
+    int xXind = 0;
     cout << "your x is " << xx << endl;
     for(int l = 0; l < n; l++)
     {
         if (xx < X[l]){
             xX = X[l-1];
+            xXind = l-1;
             break;
         }
     }
-    cout << "your xX is " << xX << endl;
+    cout << "your xX is " << xX << "at index" << xXind << endl;
 
     h=(X[i]-X[i-1]);
     cout << h << endl;
@@ -88,8 +120,8 @@ double * calc3(double x1, double x2, double x3, double x4, double x5, double x6,
         k++;
     }
 
-    double res_y = get_Y(y1, y2, y3, y4, y5, t, h);
-    double res_yy = get_YY(y1, y2, y3, y4, y5, t, h);
+    double res_y = get_Y(y1, y2, y3, y4, X, t, h, xX, xXind);
+    double res_yy = get_YY(y1, y2, y3, y4, X, t, h, xX, xXind);
 
     double * results = new double[2];
     results[0] = res_y;

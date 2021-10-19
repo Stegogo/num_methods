@@ -136,13 +136,16 @@ def save_callback():
                     args[14], args[15], args[16], args[17], args[18],
                     args[19], args[20], args[21], args[22], args[23], 
                     args[25], args[24])
-    
-    if got_res == False:
-        dpg.add_text(f"{txt}", before="go3", id="result")
-        dpg.add_text(f"{txt2}", before="go3", id="result2")
-        got_res = True
-    else:
-        dpg.delete_item("result")
-        dpg.delete_item("result2")
-        dpg.add_text(f"{txt}", before="go3", id="result")
-        dpg.add_text(f"{txt2}", before="go3", id="result2")
+    dpg.configure_item("3result1", default_value=txt[0])
+    dpg.configure_item("3result2", default_value=txt[1])
+    dpg.configure_item("3result3", default_value=txt2[0])
+    dpg.configure_item("3result4", default_value=txt2[1])
+    # if got_res == False:
+    #     dpg.add_text(f"{txt}", before="go3", id="result")
+    #     dpg.add_text(f"{txt2}", before="go3", id="result2")
+    #     got_res = True
+    # else:
+    #     dpg.delete_item("result")
+    #     dpg.delete_item("result2")
+    #     dpg.add_text(f"{txt}", before="go3", id="result")
+    #     dpg.add_text(f"{txt2}", before="go3", id="result2")
