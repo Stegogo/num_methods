@@ -18,7 +18,6 @@ def calc(x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12,
                         ctypes.c_double(fx7), ctypes.c_double(fx8), ctypes.c_double(fx9),
                         ctypes.c_double(fx10), ctypes.c_double(fx11), ctypes.c_double(fx12),
                         ctypes.c_double(n1), ctypes.c_double(n2))
-    print (res[0], res[1])
     return [round(res[0], 3), round(res[1], 3)]
 
 def show_contents(sender, data):

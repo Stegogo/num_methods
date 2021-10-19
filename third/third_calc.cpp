@@ -69,9 +69,7 @@ double * calc3(double x1, double x2, double x3, double x4, double x5, double x6,
     }
 
     h=(X[i]-X[i-1]);
-    cout << h << endl;
     t=(xx-xX)/h;
-    cout << t << endl;
 
     double y1[n];
     for(int j=1; j<n; j++)
