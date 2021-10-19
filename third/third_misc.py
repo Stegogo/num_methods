@@ -3,16 +3,23 @@ import ctypes
 
 got_res = False
 handle = ctypes.CDLL("./libtest.so")     
-handle.cppcalc1.argtypes = [ctypes.c_float]
+handle.cppcalc3.argtypes = [ctypes.c_double]
+handle.cppcalc3.restype = ctypes.POINTER(ctypes.c_double)
 
-def calc(n1, x1, n2, n22, x2):
-    res = handle.cppcalc1(ctypes.c_float(n1), ctypes.c_float(x1), ctypes.c_float(n2), ctypes.c_float(n22), ctypes.c_float(x2))
-    if res == 1:
-        return f"√{int(n1)} is more accurate."
-    elif res == 2:
-        return f"{int(n2)}/{int(n22)} is more accurate."
-    else:
-        return "Calculation error."
+def calc(x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12,
+            fx1, fx2, fx3, fx4, fx5, fx6, fx7, fx8, fx9, fx10, fx11, fx12,
+            n1, n2):
+    res = handle.cppcalc3(ctypes.c_double(x1), ctypes.c_double(x2), ctypes.c_double(x3),
+                        ctypes.c_double(x4), ctypes.c_double(x5), ctypes.c_double(x6),
+                        ctypes.c_double(x7), ctypes.c_double(x8), ctypes.c_double(x9),
+                        ctypes.c_double(x10), ctypes.c_double(x11), ctypes.c_double(x12), 
+                        ctypes.c_double(fx1), ctypes.c_double(fx2), ctypes.c_double(fx3),
+                        ctypes.c_double(fx4), ctypes.c_double(fx5), ctypes.c_double(fx6),
+                        ctypes.c_double(fx7), ctypes.c_double(fx8), ctypes.c_double(fx9),
+                        ctypes.c_double(fx10), ctypes.c_double(fx11), ctypes.c_double(fx12),
+                        ctypes.c_double(n1), ctypes.c_double(n2))
+    print (res[0], res[1])
+    return [round(res[0], 3), round(res[1], 3)]
 
 def show_contents(sender, data):
     choice = dpg.get_value(sender)
@@ -33,9 +40,19 @@ def show_contents(sender, data):
         dpg.configure_item("3fx_7", default_value='4.222')
         dpg.configure_item("3x_8", default_value='3.8')
         dpg.configure_item("3fx_8", default_value='4.331')
+        dpg.configure_item("3x_9", default_value='4.0')
+        dpg.configure_item("3fx_9", default_value='4.507')
+        dpg.configure_item("3x_10", default_value='4.2')
+        dpg.configure_item("3fx_10", default_value='4.775')
+        dpg.configure_item("3x_11", default_value='4.4')
+        dpg.configure_item("3fx_11", default_value='5.159')
+        dpg.configure_item("3x_12", default_value='4.6')
+        dpg.configure_item("3fx_12", default_value='5.683')
 
-        dpg.configure_item("3x_x1", default_value='2.4 + (0.05')
-        dpg.configure_item("3x_x2", default_value='4.04 - (0.04')
+        dpg.configure_item("3x_x11", default_value='2.4')
+        dpg.configure_item("3x_x12", default_value='0.05')
+        dpg.configure_item("3x_x21", default_value='4.04')
+        dpg.configure_item("3x_x22", default_value='0.04')
 
     elif (choice == "Even task No."):
         dpg.configure_item("3x_1", default_value='1.5')
@@ -54,28 +71,78 @@ def show_contents(sender, data):
         dpg.configure_item("3fx_7", default_value='8.442')
         dpg.configure_item("3x_8", default_value='5.0')
         dpg.configure_item("3fx_8", default_value='8.482')
+        dpg.configure_item("3x_9", default_value='5.5')
+        dpg.configure_item("3fx_9", default_value='8.862')
+        dpg.configure_item("3x_10", default_value='6.0')
+        dpg.configure_item("3fx_10", default_value='9.701')
+        dpg.configure_item("3x_11", default_value='6.5')
+        dpg.configure_item("3fx_11", default_value='11.132')
+        dpg.configure_item("3x_12", default_value='7.0')
+        dpg.configure_item("3fx_12", default_value='13.302')
 
-        dpg.configure_item("3x_x1", default_value='1.6 + (0.08')
-        dpg.configure_item("3x_x2", default_value='6.3 - (0.12')
+        dpg.configure_item("3x_x11", default_value='1.6')
+        dpg.configure_item("3x_x12", default_value='0.08')
+        dpg.configure_item("3x_x21", default_value='6.3')
+        dpg.configure_item("3x_x22", default_value='0.12')
 
 
 def save_callback():
     global got_res
-    n1 = dpg.get_value("n1")
-    x1 = dpg.get_value("x1")
-    n2 = dpg.get_value("n2")
-    n22 = dpg.get_value("n22")
-    x2 = dpg.get_value("x2")
-    args = [n1, x1, n2, n22, x2]
+    x1 = dpg.get_value("3x_1")
+    x2 = dpg.get_value("3x_2")
+    x3 = dpg.get_value("3x_3")
+    x4 = dpg.get_value("3x_4")
+    x5 = dpg.get_value("3x_5")
+    x6 = dpg.get_value("3x_6")
+    x7 = dpg.get_value("3x_7")
+    x8 = dpg.get_value("3x_8")
+    x9 = dpg.get_value("3x_9")
+    x10 = dpg.get_value("3x_10")
+    x11 = dpg.get_value("3x_11")
+    x12 = dpg.get_value("3x_12")
+
+    fx1 = dpg.get_value("3fx_1")
+    fx2 = dpg.get_value("3fx_2")
+    fx3 = dpg.get_value("3fx_3")
+    fx4 = dpg.get_value("3fx_4")
+    fx5 = dpg.get_value("3fx_5")
+    fx6 = dpg.get_value("3fx_6")
+    fx7 = dpg.get_value("3fx_7")
+    fx8 = dpg.get_value("3fx_8")
+    fx9 = dpg.get_value("3fx_9")
+    fx10 = dpg.get_value("3fx_10")
+    fx11 = dpg.get_value("3fx_11")
+    fx12 = dpg.get_value("3fx_12")
+
+    n1 = (float(dpg.get_value("3x_x11")) + (float(dpg.get_value("3x_x12")) * float(dpg.get_value("3x_n1"))))
+    n2 = (float(dpg.get_value("3x_x21")) - (float(dpg.get_value("3x_x22")) * float(dpg.get_value("3x_n2"))))
+
+    args = [x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12,
+            fx1, fx2, fx3, fx4, fx5, fx6, fx7, fx8, fx9, fx10, fx11, fx12,
+            n1, n2]
     if '' in args:
         txt = "Incorrect input."
     else:
         args = [float(x) for x in args]
-        txt = calc(args[0], args[1], args[2], args[3], args[4])
+        txt = calc(args[0], args[1], args[2], args[3], args[4],
+                    args[5], args[6], args[7], args[8], args[9], 
+                    args[10], args[11], args[12], args[13],
+                    args[14], args[15], args[16], args[17], args[18],
+                    args[19], args[20], args[21], args[22], args[23], 
+                    args[24], args[25])
+        txt2 = calc(args[0], args[1], args[2], args[3], args[4],
+                    args[5], args[6], args[7], args[8], args[9], 
+                    args[10], args[11], args[12], args[13],
+                    args[14], args[15], args[16], args[17], args[18],
+                    args[19], args[20], args[21], args[22], args[23], 
+                    args[25], args[24])
     
     if got_res == False:
-        dpg.add_text(f"{txt}", before="go", id="result")
+        dpg.add_text(f"{txt}", before="go3", id="result")
+        dpg.add_text(f"{txt2}", before="go3", id="result2")
         got_res = True
     else:
         dpg.delete_item("result")
-        dpg.add_text(f"{txt}", before="go", id="result")
+        dpg.delete_item("result2")
+        dpg.add_text(f"{txt}", before="go3", id="result")
+        dpg.add_text(f"{txt2}", before="go3", id="result2")

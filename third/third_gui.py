@@ -29,7 +29,11 @@ def third3():
     dpg.add_same_line(spacing=40)#!-----------n1 button-----------
     dpg.add_text("x1 = ")
     dpg.add_same_line(spacing=20)
-    dpg.add_input_text(width=180, id="3x_x1", decimal=True, default_value='2.4 + (0.05')
+    dpg.add_input_text(width=100, id="3x_x11", decimal=True, default_value='2.4')
+    dpg.add_same_line(spacing=20)
+    dpg.add_text("+ (")
+    dpg.add_same_line(spacing=20)
+    dpg.add_input_text(width=100, id="3x_x12", decimal=True, default_value='0.05')
     dpg.add_same_line(spacing=20)
     dpg.add_text("*")
     dpg.add_same_line(spacing=20)
@@ -41,7 +45,11 @@ def third3():
     dpg.add_same_line(spacing=40)#!-----------n2 button-----------
     dpg.add_text("x2 = ")
     dpg.add_same_line(spacing=20)
-    dpg.add_input_text(width=180, id="3x_x2", decimal=True, default_value='4.04 - (0.04')
+    dpg.add_input_text(width=100, id="3x_x21", decimal=True, default_value='4.04')
+    dpg.add_same_line(spacing=20)
+    dpg.add_text("- (")
+    dpg.add_same_line(spacing=20)
+    dpg.add_input_text(width=100, id="3x_x22", decimal=True, default_value='0.04')
     dpg.add_same_line(spacing=20)
     dpg.add_text("*")
     dpg.add_same_line(spacing=20)
@@ -58,3 +66,20 @@ def third3():
     dpg.add_input_text(width=150, id="3x_8", decimal=True, default_value='3.8')
     dpg.add_same_line(spacing=20)
     dpg.add_input_text(width=150, id="3fx_8", decimal=True, default_value='4.331')
+
+    dpg.add_input_text(width=150, id="3x_9", decimal=True, default_value='4.0')
+    dpg.add_same_line(spacing=20)
+    dpg.add_input_text(width=150, id="3fx_9", decimal=True, default_value='4.507')
+
+    dpg.add_input_text(width=150, id="3x_10", decimal=True, default_value='4.2')
+    dpg.add_same_line(spacing=20)
+    dpg.add_input_text(width=150, id="3fx_10", decimal=True, default_value='4.775')
+
+    dpg.add_input_text(width=150, id="3x_11", decimal=True, default_value='4.4')
+    dpg.add_same_line(spacing=20)
+    dpg.add_input_text(width=150, id="3fx_11", decimal=True, default_value='5.159')
+
+    dpg.add_input_text(width=150, id="3x_12", decimal=True, default_value='4.6')
+    dpg.add_same_line(spacing=20)
+    dpg.add_input_text(width=150, id="3fx_12", decimal=True, default_value='5.683')
+
