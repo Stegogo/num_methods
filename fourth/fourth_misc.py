@@ -23,7 +23,7 @@ def save_callback():
     x = sym.symbols('x')
     num_expr =  sym.parse_expr(expr)
     res_arr = []    # for r
-    res_arr_2 = []  # for
+    res_arr_2 = []  # for l
     m_res_arr = []  # for middle rectangles
     s_even_arr = []
     s_odd_arr = []
@@ -36,8 +36,6 @@ def save_callback():
         res_arr_2.append(num_expr.subs(x, varx))
     for varx in m_arr_x:
         m_res_arr.append(round(num_expr.subs(x, varx), 4))
-
-    print(res_arr)
 
     lrect = h*(sum(res_arr))
     rrect = h*(sum(res_arr_2)-res_arr_2[0])
