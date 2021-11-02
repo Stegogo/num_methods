@@ -6,13 +6,14 @@ load_dotenv('./envir.env')
 from first import first_gui
 from second import second_gui
 from third import third_gui
+from fourth import fourth_gui
 
 comfortaa_path = os.environ['COMFORTAA_FONT_PATH']
 
 with dpg.font_registry():
     dpg.add_font(comfortaa_path, 35)
     with dpg.font(comfortaa_path, 35, default_font=True):
-        dpg.add_font_chars([0x221A, 0x8723, 0x03B4])
+        dpg.add_font_chars([0x221A, 0x8723, 0x03B4, 0x222B])
 
 with dpg.window(label="Numbering Methods", id="main_window"):
     with dpg.tab_bar(id="tb1"):
@@ -22,6 +23,8 @@ with dpg.window(label="Numbering Methods", id="main_window"):
             second_gui.second1()
         with dpg.tab(label=" 3 ", id="t3"):
             third_gui.third3()
+        with dpg.tab(label=" 4 ", id="t4"):
+            fourth_gui.fourth1()
 
 
 dpg.setup_viewport()
@@ -44,6 +47,8 @@ with dpg.theme(default_theme=True):
     dpg.add_theme_color(dpg.mvThemeCol_CheckMark, [255, 175, 109], category=dpg.mvThemeCat_Core)
     dpg.add_theme_color(dpg.mvThemeCol_FrameBgHovered, [255, 156, 103], category=dpg.mvThemeCat_Core)
     dpg.add_theme_color(dpg.mvThemeCol_FrameBgActive, [255, 255, 153], category=dpg.mvThemeCat_Core)
+    dpg.add_theme_color(dpg.mvThemeCol_HeaderActive, [255, 191, 0, 153], category=dpg.mvThemeCat_Core)
+    dpg.add_theme_color(dpg.mvThemeCol_HeaderHovered, [232, 125, 7, 103], category=dpg.mvThemeCat_Core)
 
     dpg.add_theme_color(dpg.mvThemeCol_PlotLines, [255, 222, 31], category=dpg.mvThemeCat_Core)
     dpg.add_theme_color(dpg.mvPlotCol_Line, [255, 225, 31], category=dpg.mvThemeCat_Plots)
@@ -55,5 +60,6 @@ with dpg.theme(id="go_button"):
 dpg.set_item_theme("go", "go_button")
 dpg.set_item_theme("go2", "go_button")
 dpg.set_item_theme("go3", "go_button")
+dpg.set_item_theme("go4", "go_button")
 
 dpg.start_dearpygui()
