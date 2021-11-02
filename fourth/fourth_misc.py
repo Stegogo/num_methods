@@ -15,12 +15,15 @@ def save_callback():
     n = int(dpg.get_value("4n"))
     
     h = ((int_up - int_down)/n)
-    arr_x = np.arange(int_down, int_up+h, h)
+    arr_x = np.arange(int_down, int_up, h)
+    arr_x_2 = np.arange(int_down, int_up+h, h)
     m_arr_x = [(x+h/2) for x in arr_x]
+
 
     x = sym.symbols('x')
     num_expr =  sym.parse_expr(expr)
-    res_arr = []    # for r and l rectangles
+    res_arr = []    # for r
+    res_arr_2 = []  # for
     m_res_arr = []  # for middle rectangles
     s_even_arr = []
     s_odd_arr = []
@@ -29,12 +32,15 @@ def save_callback():
         res_arr.append(num_expr.subs(x, varx))
         if(i % 2 == 0 and i != 0 and i != n): s_even_arr.append(num_expr.subs(x, varx))
         if(i % 2 != 0 and i != 0 and i != n): s_odd_arr.append(num_expr.subs(x, varx))
+    for i, varx in enumerate(arr_x_2):
+        res_arr_2.append(num_expr.subs(x, varx))
     for varx in m_arr_x:
-        m_res_arr.append(num_expr.subs(x, varx))
- 
+        m_res_arr.append(round(num_expr.subs(x, varx), 4))
+
+    print(res_arr)
 
     lrect = h*(sum(res_arr))
-    rrect = h*(sum(res_arr)-res_arr[0])
+    rrect = h*(sum(res_arr_2)-res_arr_2[0])
     mrect = h*(sum(m_res_arr))
     simpsons = h/3*((res_arr[0] + res_arr[-1]) + 4*(sum(s_odd_arr)) + 2*(sum(s_even_arr)))
     trapezoids = h*(((res_arr[0]+res_arr[-1])/2) + (sum(res_arr)-res_arr[0]))
