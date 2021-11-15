@@ -7,6 +7,7 @@ from first import first_gui
 from second import second_gui
 from third import third_gui
 from fourth import fourth_gui
+from fifth import fifth_gui
 
 comfortaa_path = os.environ['COMFORTAA_FONT_PATH']
 
@@ -25,6 +26,8 @@ with dpg.window(label="Numbering Methods", id="main_window"):
             third_gui.third3()
         with dpg.tab(label=" 4 ", id="t4"):
             fourth_gui.fourth1()
+        with dpg.tab(label=" 5 ", id="t5"):
+            fifth_gui.fifth1()
 
 
 dpg.setup_viewport()
@@ -61,5 +64,6 @@ dpg.set_item_theme("go", "go_button")
 dpg.set_item_theme("go2", "go_button")
 dpg.set_item_theme("go3", "go_button")
 dpg.set_item_theme("go4", "go_button")
+dpg.set_item_theme("go5", "go_button")
 
 dpg.start_dearpygui()
