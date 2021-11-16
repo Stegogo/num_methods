@@ -16,5 +16,3 @@ def fifth1():
     dpg.add_text("]")
     dpg.add_button(label="Go!", callback=fifth_misc.save_callback, id="go5")
     dpg.set_item_pos("go5", [540, 105])
-    
-    
