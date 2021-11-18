@@ -83,8 +83,8 @@ def save_callback():
         dpg.delete_item("plot_window5")
         dpg.delete_item("5_result_newton")
         dpg.delete_item("5_result_bisection")
-        dpg.add_text(f"Newton method: {arr_newton}", before="5expr", id="5_result_newton")
-        dpg.add_text(f"Bisection method: {arr_bisection}", before="5_result_newton", id="5_result_bisection")
+        dpg.add_text(f"Newton method:\n{arr_newton}", before="5expr", id="5_result_newton")
+        dpg.add_text(f"Bisection method:\n{arr_bisection}", before="5_result_newton", id="5_result_bisection")
         with dpg.window(label="Plot", width=550, height=600, id="plot_window5"):
             datax = []
             datay = []
