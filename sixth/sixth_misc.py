@@ -5,6 +5,24 @@ got_res = False
 handle = ctypes.CDLL("./libtest.so")     
 handle.cppcalc1.argtypes = [ctypes.c_float]
 
+class Expression:
+    def __init__(self,function):
+        self.function = function
+    
+    def get_sin_or_cos(self, sender, data):
+        if (data == "sin"):
+            self.function = "sin"
+            print(self.function)
+        else:
+            self.function = "cos"
+            print(self.function)
+
+def switch_modes(sender, data):
+    if (data == "Euler method"):
+        print("a")
+    else:
+        print("b")
+        
 def calc(n1, x1, n2, n22, x2):
     res = handle.cppcalc1(ctypes.c_float(n1), ctypes.c_float(x1), ctypes.c_float(n2), ctypes.c_float(n22), ctypes.c_float(x2))
     if res == 1:
