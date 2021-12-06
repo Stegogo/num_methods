@@ -11,7 +11,7 @@ def sixth1():
     dpg.add_radio_button(items=["Euler method", "Euler-Cauchy method"], callback=sixth_misc.switch_modes)
     dpg.add_text("y' = x +")
     dpg.add_same_line(spacing=10)
-    dpg.add_combo(items=["sin", "cos"], callback=expr.get_sin_or_cos, width=110)
+    dpg.add_combo(items=["sin", "cos"], callback=expr.get_sin_or_cos, width=110, default_value="sin")
     dpg.add_same_line(spacing=10)
     dpg.add_text("(y/")
     dpg.add_same_line(spacing=10)
