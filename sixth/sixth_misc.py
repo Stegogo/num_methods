@@ -24,7 +24,6 @@ class Expression:
 expr = Expression("sin", "1")
 
 
-
 def switch_modes(sender, data):
     if (data == "Euler method"):
         print("a")
@@ -43,12 +42,16 @@ def calc(n1, x1, n2, n22, x2):
 def save_callback():
     expr.set_expr(dpg.get_value("6expr"))
     print(expr.function, expr.expr)
-    # global got_res
-    # n1 = dpg.get_value("n1")
-    # x1 = dpg.get_value("x1")
-    # n2 = dpg.get_value("n2")
-    # n22 = dpg.get_value("n22")
-    # x2 = dpg.get_value("x2")
+    
+    global got_res
+    function = expr.function
+    n = dpg.get_value("6expr")
+    start_x = dpg.get_value("6start_x")
+    start_y = dpg.get_value("6start_y")
+    interval_begin = dpg.get_value("6interval_begin")
+    interval_end = dpg.get_value("6interval_end")
+    h = 0.1
+    
     # args = [n1, x1, n2, n22, x2]
     # if '' in args:
     #     txt = "Incorrect input."
