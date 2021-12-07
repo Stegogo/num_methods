@@ -68,13 +68,13 @@ def save_callback():
         print(expr.mode)
         for i in range(0, int(n)):
             x_arr[i+1] = x_arr[i]+h;
-            y_arr[i+1] = y_arr[i] + (h*((func_parsed(x_arr[i]))*(y_arr[i]/a_parsed)));
+            y_arr[i+1] = y_arr[i] + (h*((func_parsed(x_arr[i]))*(y_arr[i]/(a_parsed))));
             print(x_arr[i], y_arr[i])
     else:
         print(expr.mode)
         for i in range(0, int(n)):
             x_arr[i+1]=x_arr[i]+h;
-            y_arr[i + 1] = y_arr[i] + h / 2 * (x_arr[i] + cos(y_arr[i] / a_parsed) + x_arr[i + 1] + cos((y_arr[i] + h * (x_arr[i] + cos(y_arr[i] / a_parsed))) / a_parsed));
+            y_arr[i + 1] = y_arr[i] + (h / 2) * (x_arr[i] + cos(y_arr[i] / (a_parsed)) + x_arr[i + 1] + cos((y_arr[i] + h * (x_arr[i] + cos(y_arr[i] / (a_parsed)))) / (a_parsed)));
             print(x_arr[i], y_arr[i])
     
     if got_res == False:
