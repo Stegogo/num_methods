@@ -45,12 +45,19 @@ def save_callback():
     
     global got_res
     function = expr.function
-    n = dpg.get_value("6expr")
+    a = dpg.get_value("6expr")
     start_x = dpg.get_value("6start_x")
     start_y = dpg.get_value("6start_y")
     interval_begin = dpg.get_value("6interval_begin")
     interval_end = dpg.get_value("6interval_end")
     h = 0.1
+    
+    x_arr = []
+    y_arr = []
+    f_arr = []
+    x_arr[0] = start_x
+    y_arr[0] = start_y
+    n = (interval_end -interval_begin)/h
     
     # args = [n1, x1, n2, n22, x2]
     # if '' in args:
