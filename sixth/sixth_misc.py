@@ -64,7 +64,7 @@ def save_callback():
     y_arr.append(start_y)
     n = (interval_end - interval_begin)/h
     
-    for i in np.arange(0, n, h):
+    for i in range(0, int(n)):
         x_arr[i+1] = x_arr[i]+h;
         y_arr[i+1] = y_arr[i] + h*(func_parsed(x_arr[i])*(y_arr[i]/a_parsed));
         print(x_arr[i], y_arr[i])
