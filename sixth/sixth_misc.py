@@ -83,9 +83,27 @@ def save_callback():
     #     args = [float(x) for x in args]
     #     txt = calc(args[0], args[1], args[2], args[3], args[4])
     
-    # if got_res == False:
-    #     dpg.add_text(f"{txt}", before="go", id="result")
-    #     got_res = True
-    # else:
-    #     dpg.delete_item("result")
-    #     dpg.add_text(f"{txt}", before="go", id="result")
+    if got_res == False:
+        with dpg.window(label="Plot", width=550, height=600, id="plot_window6"):
+            datax = []
+            datay = []
+            for i in range(0, int(n)):
+                datax.append(x_arr[i])
+                datay.append(y_arr[i])
+            with dpg.plot(height=500, width=500):
+                dpg.add_plot_axis(dpg.mvXAxis, label="x")
+                dpg.add_plot_axis(dpg.mvYAxis, label="y", id="y_axis")
+                dpg.add_line_series(datax, datay, parent="y_axis")
+        got_res = True
+    else:
+        dpg.delete_item("plot_window6")
+        with dpg.window(label="Plot", width=550, height=600, id="plot_window6"):
+            datax = []
+            datay = []
+            for i in range(0, int(n)):
+                datax.append(x_arr[i])
+                datay.append(y_arr[i])
+            with dpg.plot(height=500, width=500):
+                dpg.add_plot_axis(dpg.mvXAxis, label="x")
+                dpg.add_plot_axis(dpg.mvYAxis, label="y", id="y_axis")
+                dpg.add_line_series(datax, datay, parent="y_axis")
