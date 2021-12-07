@@ -66,22 +66,20 @@ def save_callback():
     
     if (expr.mode == "Euler method"):
         print(expr.mode)
-        for i in range(0, int(n)):
+        for i in range(0, int(n)+1):
             x_arr[i+1] = x_arr[i]+h;
-            y_arr[i+1] = y_arr[i] + (h*((func_parsed(x_arr[i]))*(y_arr[i]/(a_parsed))));
-            print(x_arr[i], y_arr[i])
+            y_arr[i+1] = y_arr[i] + (h*((func_parsed(x_arr[i]))*((y_arr[i])/(a_parsed))));
     else:
         print(expr.mode)
-        for i in range(0, int(n)):
+        for i in range(0, int(n)+1):
             x_arr[i+1]=x_arr[i]+h;
             y_arr[i + 1] = y_arr[i] + (h / 2) * (x_arr[i] + cos(y_arr[i] / (a_parsed)) + x_arr[i + 1] + cos((y_arr[i] + h * (x_arr[i] + cos(y_arr[i] / (a_parsed)))) / (a_parsed)));
-            print(x_arr[i], y_arr[i])
     
     if got_res == False:
         with dpg.window(label=f"Plot for {expr.mode}", width=550, height=600, id="plot_window6"):
             datax = []
             datay = []
-            for i in range(0, int(n)):
+            for i in range(0, int(n)+1):
                 datax.append(x_arr[i])
                 datay.append(y_arr[i])
             with dpg.plot(height=500, width=500):
@@ -94,7 +92,7 @@ def save_callback():
                 dpg.add_table_column()
                 dpg.add_table_column()
                 
-                for i in range(0, int(n)):
+                for i in range(0, int(n)+1):
                     with dpg.table_row():
                         for j in range(0, 2):
                             if (j == 0):
