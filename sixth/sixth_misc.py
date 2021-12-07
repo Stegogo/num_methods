@@ -9,9 +9,10 @@ handle = ctypes.CDLL("./libtest.so")
 handle.cppcalc1.argtypes = [ctypes.c_float]
 
 class Expression:
-    def __init__(self,function, expr):
+    def __init__(self,function, expr, mode):
         self.function = function
         self.expr = expr
+        self.mode = mode
     
     def set_sin_or_cos(self, sender, data):
         if (data == "sin"):
@@ -23,15 +24,12 @@ class Expression:
             
     def set_expr(self, value):
             self.expr = value
+            
+    def set_mode(self, sender, data):
+        print("==", data)
+        self.mode = data
         
-expr = Expression("sin", "1")
-
-
-def switch_modes(sender, data):
-    if (data == "Euler method"):
-        print("a")
-    else:
-        print("b")
+expr = Expression("sin", "1", "Euler method")
         
 def calc(n1, x1, n2, n22, x2):
     res = handle.cppcalc1(ctypes.c_float(n1), ctypes.c_float(x1), ctypes.c_float(n2), ctypes.c_float(n22), ctypes.c_float(x2))
@@ -66,11 +64,22 @@ def save_callback():
     x_arr[0] = start_x
     y_arr[0] = start_y
     
-    
-    for i in range(0, int(n)):
-        x_arr[i+1] = x_arr[i]+h;
-        y_arr[i+1] = y_arr[i] + (h*((func_parsed(x_arr[i]))*(y_arr[i]/a_parsed)));
-        print(x_arr[i], y_arr[i])
+    if (expr.mode == "Euler method"):
+        print(expr.mode)
+        for i in range(0, int(n)):
+            x_arr[i+1] = x_arr[i]+h;
+            y_arr[i+1] = y_arr[i] + (h*((func_parsed(x_arr[i]))*(y_arr[i]/a_parsed)));
+            print(x_arr[i], y_arr[i])
+    else:
+        print(expr.mode)
+        for i in range(0, int(n)):
+            x_arr[i+1] = x_arr[i]+h;
+            y_arr[i+1] = y_arr[i] + (h*((func_parsed(x_arr[i]))*(y_arr[i]/a_parsed)));
+            print(x_arr[i], y_arr[i])
+            
+            x_arr[i+1]=x_arr[i]+h;
+            y_arr[i + 1] = y_arr[i] + h / 2 * (x_arr[i] + cos(y_arr[i] / a_parsed) + x_arr[i + 1] + cos((y_arr[i] + h * (x_arr[i] + cos(y_arr[i] / a_parsed))) / a_parsed));
+            print(x_arr[i], y_arr[i])
     # args = [n1, x1, n2, n22, x2]
     # if '' in args:
     #     txt = "Incorrect input."

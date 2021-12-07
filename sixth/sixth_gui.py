@@ -6,7 +6,7 @@ def sixth1():
                  "for the ordinary first-order differential\n"
                  "equation on a segment with a step h=0.1\n"
                  "under the inital conditions:\n")
-    dpg.add_radio_button(items=["Euler method", "Euler-Cauchy method"], callback=sixth_misc.switch_modes)
+    dpg.add_radio_button(items=["Euler method", "Euler-Cauchy method"], callback=sixth_misc.expr.set_mode)
     dpg.add_text("y' = x +")
     dpg.add_same_line(spacing=10)
     dpg.add_combo(items=["sin", "cos"], callback=sixth_misc.expr.set_sin_or_cos, width=110, default_value="sin")
