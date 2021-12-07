@@ -65,12 +65,11 @@ def save_callback():
     f_arr = [0]*100
     x_arr[0] = start_x
     y_arr[0] = start_y
-    print(y_arr)
     
     
     for i in range(0, int(n)):
         x_arr[i+1] = x_arr[i]+h;
-        y_arr[i+1] = y_arr[i] + h*(func_parsed(x_arr[i])*(y_arr[i]/a_parsed));
+        y_arr[i+1] = y_arr[i] + (h*((func_parsed(x_arr[i]))*(y_arr[i]/a_parsed)));
         print(x_arr[i], y_arr[i])
     # args = [n1, x1, n2, n22, x2]
     # if '' in args:
