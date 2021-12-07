@@ -1,5 +1,6 @@
 import dearpygui.dearpygui as dpg
 import ctypes
+from math import *
 import sympy as sym
 import numpy as np
 
@@ -54,15 +55,18 @@ def save_callback():
     interval_end = float(dpg.get_value("6interval_end"))
     h = 0.1
     
-    a_parsed = sym.parse_expr(a)
-    func_parsed = sym.parse_expr(function)
+    a_parsed = sym.parse_expr(a, evaluate=True)
+    func_parsed = eval(function)
     
-    x_arr = []
-    y_arr = []
-    f_arr = []
-    x_arr.append(start_x)
-    y_arr.append(start_y)
     n = (interval_end - interval_begin)/h
+    
+    x_arr = [0]*100
+    y_arr = [0]*100
+    f_arr = [0]*100
+    x_arr[0] = start_x
+    y_arr[0] = start_y
+    print(y_arr)
+    
     
     for i in range(0, int(n)):
         x_arr[i+1] = x_arr[i]+h;
