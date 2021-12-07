@@ -6,16 +6,24 @@ handle = ctypes.CDLL("./libtest.so")
 handle.cppcalc1.argtypes = [ctypes.c_float]
 
 class Expression:
-    def __init__(self,function):
+    def __init__(self,function, expr):
         self.function = function
+        self.expr = expr
     
-    def get_sin_or_cos(self, sender, data):
+    def set_sin_or_cos(self, sender, data):
         if (data == "sin"):
             self.function = "sin"
             print(self.function)
         else:
             self.function = "cos"
             print(self.function)
+            
+    def set_expr(self, value):
+            self.expr = value
+        
+expr = Expression("sin", "1")
+
+
 
 def switch_modes(sender, data):
     if (data == "Euler method"):
@@ -33,22 +41,24 @@ def calc(n1, x1, n2, n22, x2):
         return "Calculation error."
 
 def save_callback():
-    global got_res
-    n1 = dpg.get_value("n1")
-    x1 = dpg.get_value("x1")
-    n2 = dpg.get_value("n2")
-    n22 = dpg.get_value("n22")
-    x2 = dpg.get_value("x2")
-    args = [n1, x1, n2, n22, x2]
-    if '' in args:
-        txt = "Incorrect input."
-    else:
-        args = [float(x) for x in args]
-        txt = calc(args[0], args[1], args[2], args[3], args[4])
+    expr.set_expr(dpg.get_value("6expr"))
+    print(expr.function, expr.expr)
+    # global got_res
+    # n1 = dpg.get_value("n1")
+    # x1 = dpg.get_value("x1")
+    # n2 = dpg.get_value("n2")
+    # n22 = dpg.get_value("n22")
+    # x2 = dpg.get_value("x2")
+    # args = [n1, x1, n2, n22, x2]
+    # if '' in args:
+    #     txt = "Incorrect input."
+    # else:
+    #     args = [float(x) for x in args]
+    #     txt = calc(args[0], args[1], args[2], args[3], args[4])
     
-    if got_res == False:
-        dpg.add_text(f"{txt}", before="go", id="result")
-        got_res = True
-    else:
-        dpg.delete_item("result")
-        dpg.add_text(f"{txt}", before="go", id="result")
+    # if got_res == False:
+    #     dpg.add_text(f"{txt}", before="go", id="result")
+    #     got_res = True
+    # else:
+    #     dpg.delete_item("result")
+    #     dpg.add_text(f"{txt}", before="go", id="result")
