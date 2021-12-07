@@ -76,15 +76,9 @@ def save_callback():
             x_arr[i+1]=x_arr[i]+h;
             y_arr[i + 1] = y_arr[i] + h / 2 * (x_arr[i] + cos(y_arr[i] / a_parsed) + x_arr[i + 1] + cos((y_arr[i] + h * (x_arr[i] + cos(y_arr[i] / a_parsed))) / a_parsed));
             print(x_arr[i], y_arr[i])
-    # args = [n1, x1, n2, n22, x2]
-    # if '' in args:
-    #     txt = "Incorrect input."
-    # else:
-    #     args = [float(x) for x in args]
-    #     txt = calc(args[0], args[1], args[2], args[3], args[4])
     
     if got_res == False:
-        with dpg.window(label="Plot", width=550, height=600, id="plot_window6"):
+        with dpg.window(label=f"Plot for {expr.mode}", width=550, height=600, id="plot_window6"):
             datax = []
             datay = []
             for i in range(0, int(n)):
@@ -94,10 +88,26 @@ def save_callback():
                 dpg.add_plot_axis(dpg.mvXAxis, label="x")
                 dpg.add_plot_axis(dpg.mvYAxis, label="y", id="y_axis")
                 dpg.add_line_series(datax, datay, parent="y_axis")
+                
+        with dpg.window(label=f"Table for {expr.mode}", id="table_window6"):
+            with dpg.table(header_row=False):
+                dpg.add_table_column()
+                dpg.add_table_column()
+                
+                for i in range(0, int(n)):
+                    with dpg.table_row():
+                        for j in range(0, 2):
+                            if (j == 0):
+                                dpg.add_text(f"{round(x_arr[i], 4)}")
+                            else:
+                                dpg.add_text(f"{round(y_arr[i], 4)}")
+                
         got_res = True
     else:
         dpg.delete_item("plot_window6")
-        with dpg.window(label="Plot", width=550, height=600, id="plot_window6"):
+        dpg.delete_item("table_window6")
+        
+        with dpg.window(label=f"Plot for {expr.mode}", width=550, height=600, id="plot_window6"):
             datax = []
             datay = []
             for i in range(0, int(n)):
@@ -107,3 +117,16 @@ def save_callback():
                 dpg.add_plot_axis(dpg.mvXAxis, label="x")
                 dpg.add_plot_axis(dpg.mvYAxis, label="y", id="y_axis")
                 dpg.add_line_series(datax, datay, parent="y_axis")
+        
+        with dpg.window(label=f"Table for {expr.mode}", id="table_window6"):
+            with dpg.table(header_row=False):
+                dpg.add_table_column()
+                dpg.add_table_column()
+                
+                for i in range(0, int(n)):
+                    with dpg.table_row():
+                        for j in range(0, 2):
+                            if (j == 0):
+                                dpg.add_text(f"{round(x_arr[i], 4)}")
+                            else:
+                                dpg.add_text(f"{round(y_arr[i], 4)}")
